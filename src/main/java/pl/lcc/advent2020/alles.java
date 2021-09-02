@@ -13,5 +13,6 @@ public class alles {
         new Day2("day2.txt").calculate();
         new Day4("day4.txt").calculate();
         new Day5("day5.txt").calculate();
+        new Day6("day6.txt").calculate();
     }
 }

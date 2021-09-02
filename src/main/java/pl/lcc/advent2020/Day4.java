@@ -49,9 +49,7 @@ class DocEntry{
     }
     
      public boolean validForP2(){
-     if (!validForP1()) return false;
-         System.out.println(passport);
-         System.out.println( "by: "  + byrValid() + " y: " + yitValid() + " eyr " + eyrValid() + " hgt: " +  hgtValid() + " hcl: " + hclValid() + " ecl: " + eclValid() + " pid: " + pidValid());
+     if (!validForP1()) return false;      
      return byrValid() && yitValid() && eyrValid() && hgtValid() && hclValid() && eclValid() && pidValid();
      }
 
@@ -121,7 +119,7 @@ public class Day4 {
     Day4(){};
       
     void calculate(){
-        System.out.println("Day 1 result:");
+        System.out.println("Day 4 result:");
         System.out.println("\t part1: " + part1(entries));
         System.out.println("\t part2: " + part2(entries));
     }
@@ -133,8 +131,7 @@ public class Day4 {
               .count();
     }
 
-    int part2(String[] input) {
-        System.out.println(input.length);
+    int part2(String[] input) {    
          return (int) Arrays.stream(input)
               .map(DocEntry::new)
               .filter(DocEntry::validForP2)

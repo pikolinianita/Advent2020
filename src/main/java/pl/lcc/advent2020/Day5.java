@@ -12,8 +12,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 class Parser {
     
@@ -38,7 +36,7 @@ public class Day5 {
     
     Day5(){};
     
-     Day5(String path) throws FileNotFoundException{
+    Day5(String path) throws FileNotFoundException{
       try (java.util.Scanner sc = new Scanner(new File(path))) {
           entries = sc.tokens().toArray(String[]::new);
         }
@@ -55,8 +53,7 @@ public class Day5 {
               .map(Parser::new)
               .mapToInt(Parser::getId)
               .max()
-              .orElse(-1);
-              
+              .orElse(-1);              
     }
 
     int part2(String[] input) {
@@ -65,15 +62,6 @@ public class Day5 {
               .map(Parser::getId)
               .toList();
         return findSeat(list);
-    /*    
-        //Arrays.sort(arr);
-        var set = IntStream.range(1, 938)
-                .mapToObj(Integer::valueOf)
-                .collect(Collectors.toSet());
-        set.removeAll(list);
-        
-        return 0;
-*/
     }
     
     public static void main(String[] args) throws FileNotFoundException {
@@ -91,6 +79,5 @@ public class Day5 {
            }
            i++;
        }
-       //return 0;
     }
 }

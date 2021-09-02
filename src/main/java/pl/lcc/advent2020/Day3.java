@@ -11,7 +11,7 @@ public class Day3 {
     Day3(){};
       
     void calculate(){
-        System.out.println("Day 1 result:");
+        System.out.println("Day 3 result:");
         System.out.println("\t part1: " + part1(null));
         System.out.println("\t part2: " + part2(null));
     }
