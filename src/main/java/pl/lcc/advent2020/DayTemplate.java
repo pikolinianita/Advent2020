@@ -17,10 +17,10 @@ public class DayTemplate {
     }
     
     int part1(int[] input) {
-      return 0;
+      return -1;
     }
 
     int part2(int[] input) {
-        return 0;
+        return -1;
     }
 }
