@@ -22,7 +22,7 @@ public class Day6 {
     Day6(){};
     
     Day6 (String path) throws FileNotFoundException {
-        try (java.util.Scanner sc = new Scanner(new File(path))) {
+        try (Scanner sc = new Scanner(new File(path))) {
             sc.useDelimiter("\n\n");
             groups = sc.tokens().toArray(String[]::new);
         }  

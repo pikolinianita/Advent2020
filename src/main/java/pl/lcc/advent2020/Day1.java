@@ -53,6 +53,6 @@ public class Day1 {
     }
 
     int part2(int[] input) {
-        return 0;
+        return -1;
     }
 }

@@ -6,25 +6,21 @@
 package pl.lcc.advent2020;
 
 
-public class Day3 {
+public class Day8 {
    
-    Day3(){};
-
-    Day3(String input) {
-       
-    }
+    Day8(){};
       
     void calculate(){
-        System.out.println("Day 3 result:");
+        System.out.println("Day 1 result:");
         System.out.println("\t part1: " + part1(null));
         System.out.println("\t part2: " + part2(null));
     }
     
     int part1(int[] input) {
-      return -1;
+      return 0;
     }
 
     int part2(int[] input) {
-        return -1;
+        return 0;
     }
 }
