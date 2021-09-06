@@ -12,13 +12,10 @@ import java.util.Scanner;
 
 
 public class Day1 {
-
-    String inputPath;
     
     int[] parsedInput;
     
     public Day1(String path) throws FileNotFoundException {
-        inputPath = path;
         try (Scanner sc = new Scanner(new File(path))) {
             parsedInput = sc.tokens()
                     .mapToInt(Integer::parseInt)
