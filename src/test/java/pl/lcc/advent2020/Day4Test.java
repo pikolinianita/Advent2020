@@ -32,15 +32,7 @@ public class Day4Test {
     
     public Day4Test() {
     }
-
-    @Test
-    public void testSomeMethod() throws FileNotFoundException {
-        var x = new Day4("Day4.txt");
-        x.calculate();
-        System.out.println(x.entries.length);
-        System.out.println("123".matches("\\d+"));
-    }
-    
+   
     @Test
     void testDocEntry(){
         var de = new DocEntry("ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm");

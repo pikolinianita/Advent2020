@@ -28,12 +28,6 @@ public class Day1Test {
         assertEquals(514579, result, "Day 1 multiplicated");
     }
 
-   @Test
-   public void testConstr() throws FileNotFoundException{
-       var day = new Day1("day1.txt");
-       assertEquals(200, day.parsedInput.length);
-   }
-   
   // @Test
    public void testPart2(){
        var day = new Day1();

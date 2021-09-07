@@ -26,10 +26,5 @@ public class Day13Test {
        int result = new Day13().findBusSolution(timeStamp, busses);
        assertEquals(295, result);
     }
-    
-    @Test
-    public void testInput() throws FileNotFoundException{
-        var d = new Day13("day13.txt");
-    }
-    
+            
 }

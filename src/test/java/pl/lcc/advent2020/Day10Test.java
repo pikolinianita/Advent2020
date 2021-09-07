@@ -34,38 +34,9 @@ public class Day10Test {
         assertEquals(35, result);
         assertEquals(12, adapter.threes() + adapter.ones() + adapter.twos());
     }
-
-    @Test
-    public void findJointPoints() throws FileNotFoundException {
-        try ( Scanner sc = new Scanner(new File("Day10.txt"))) {
-            var parsedInput = sc.tokens()
-                    .mapToInt(Integer::parseInt)
-                    .toArray();
-            new AdvancedAdapterManager(parsedInput).findJointPoint();
-            var oldOne = new AdapterManager(parsedInput);
-            oldOne.calculate();
-            System.out.println(oldOne.twos());
-        }
-    }
-
-    @Test
-    public void findAreas() throws FileNotFoundException {
-        try ( Scanner sc = new Scanner(new File("Day10.txt"))) {
-            var parsedInput = sc.tokens()
-                    .mapToInt(Integer::parseInt)
-                    .toArray();
-            new AdvancedAdapterManager(parsedInput).findAreas().forEach(a -> System.out.println(Arrays.toString(a)));
-        }
-    }
-
-    @Test
-    public void findAreasSmallTxt() throws FileNotFoundException {
-        new AdvancedAdapterManager(inputSmall).findAreas().forEach(a -> System.out.println(Arrays.toString(a)));
-        
-    }
     
     @Test
-    public void findAreasSmall() throws FileNotFoundException {
+    public void findAreasSmall() {
         var result = new AdvancedAdapterManager(inputSmall).findAreas()
                 .stream()
                 .mapToInt(a -> a.length)
@@ -77,7 +48,7 @@ public class Day10Test {
     }
     
     @Test
-    public void findAreasLrg() throws FileNotFoundException {
+    public void findAreasLrg()  {
         var result = new AdvancedAdapterManager(inputLarge).findAreas()
                 .stream()
                 .mapToInt(a -> a.length)
