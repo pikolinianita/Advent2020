@@ -5,7 +5,6 @@
  */
 package pl.lcc.advent2020;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author piko
  */
-public class Day7Test {
+ class Day7Test {
     
     String example = """
                      light red bags contain 1 bright white bag, 2 muted yellow bags.
@@ -44,19 +43,19 @@ public class Day7Test {
     }
 
     @Test
-    public void testProcessLine() {
+     void testProcessLine() {
        var d = new Day7().processLine("light red bags contain 1 bright white bag, 2 muted yellow bags.");
        assertEquals(3, d.size());
     }
     
      @Test
-    public void testProcessLineBagempty() {
+     void testProcessLineBagempty() {
        var d = new Day7().processLine("dotted black bags contain no other bags.");
        assertTrue(d.isEmpty());
     }
     
      @Test
-    public void testProcessLine2() {
+     void testProcessLine2() {
        var d = new Day7().processLine2("light red bags contain 1 bright white bag, 2 muted yellow bags.");
        System.out.println(d);
        assertEquals(3, d.size());
@@ -64,13 +63,13 @@ public class Day7Test {
     }
     
      @Test
-    public void testProcessLineBagempty2() {
+     void testProcessLineBagempty2() {
        var d = new Day7().processLine2("dotted black bags contain no other bags.");
        assertTrue(d.isEmpty());
     }
     
     @Test
-    public void testPart1(){
+     void testPart1(){
         var day = new Day7(); 
         var exampleLines = example.lines().toArray(String[]::new);
         //System.out.println(Arrays.toString(day.lines));
@@ -78,7 +77,7 @@ public class Day7Test {
     }
     
     @Test
-    public void testPart2(){
+     void testPart2(){
         var day = new Day7(); 
         var exampleLines = example.lines().toArray(String[]::new);
         //System.out.println(Arrays.toString(day.lines)); 
@@ -86,7 +85,7 @@ public class Day7Test {
     }
     
     @Test
-    public void testAnotherPart2(){
+     void testAnotherPart2(){
         var day = new Day7(); 
         var exampleLines = anotherExample.lines().toArray(String[]::new);
         //System.out.println(Arrays.toString(day.lines));
@@ -94,7 +93,7 @@ public class Day7Test {
     }
     
     @Test
-    public void testManagerOne(){
+     void testManagerOne(){
         Map<String, List<String>> db = new HashMap<>();
         db.put("Gold", List.of("Red","Blue"));
         var manager = new Day7.BagManager(db);
@@ -102,7 +101,7 @@ public class Day7Test {
     }
     
     @Test
-    public void testManagerTwo(){
+     void testManagerTwo(){
         Map<String, List<String>> db = new HashMap<>();
         db.put("Gold", List.of("Red","Blue"));
         db.put("Red", List.of("Blue", "Green"));
@@ -111,7 +110,7 @@ public class Day7Test {
     }
     
     @Test
-    public void FilledBagTest() {
+     void FilledBagTest() {
         
         // given
         var input = List.of("light red", "1 bright white", "2 muted yellow");

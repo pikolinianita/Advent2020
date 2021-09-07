@@ -5,10 +5,6 @@
  */
 package pl.lcc.advent2020;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.Scanner;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author piko
  */
-public class Day10Test {
+class Day10Test {
 
     int[] inputSmall = {16, 10, 15, 5, 1, 11, 7, 19, 6, 12, 4};
     
@@ -26,7 +22,7 @@ public class Day10Test {
     }
 
     @Test
-    public void testAdapter() {
+    void testAdapter() {
         var adapter = new AdapterManager(inputSmall);
         adapter.calculate();
         System.out.println(adapter.toString());
@@ -36,7 +32,7 @@ public class Day10Test {
     }
     
     @Test
-    public void findAreasSmall() {
+    void findAreasSmall() {
         var result = new AdvancedAdapterManager(inputSmall).findAreas()
                 .stream()
                 .mapToInt(a -> a.length)
@@ -48,7 +44,7 @@ public class Day10Test {
     }
     
     @Test
-    public void findAreasLrg()  {
+    void findAreasLrg()  {
         var result = new AdvancedAdapterManager(inputLarge).findAreas()
                 .stream()
                 .mapToInt(a -> a.length)

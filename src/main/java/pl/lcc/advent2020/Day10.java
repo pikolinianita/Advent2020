@@ -15,7 +15,9 @@ class AdapterManager {
 
     int[] adapters;
 
-    int ones, threes, twos;
+    int ones;
+    int threes;
+    int twos;
 
     AdapterManager(int[] inputSmall) {
         adapters = inputSmall;

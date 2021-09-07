@@ -25,7 +25,7 @@ public class Day1 {
     
     Day1(){}
     
-    final int DAY1_VALUE = 2020;
+    static final int DAY1_VALUE = 2020;
     
     int part1(int[] input) {
         var sortedInput = input;

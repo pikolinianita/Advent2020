@@ -8,7 +8,7 @@ package pl.lcc.advent2020;
 
 public class Day9 {
    
-    Day9(){};
+    Day9(){}
       
     void calculate(){
         Utils.printResult("Day 9",part1(null),part2(null));

@@ -12,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author Teresa
  */
-public class Day2Test {
+ class Day2Test {
     
     public Day2Test() {
     }
 
     @Test
-    public void testParse() {
+     void testParse() {
         var verifier = new PassVerifier("1-3 a: abcde");
         assertEquals(1, verifier.min);
         assertEquals(3, verifier.max);
@@ -28,7 +28,7 @@ public class Day2Test {
     }
     
     //@Test
-    public void testParts1(){
+     void testParts1(){
         String[] testList = {"1-3 a: abcde", "1-3 b: cdefg", "2-9 c: ccccccccc"};
         var result = new Day2().part1(testList);
         assertEquals(2,  result);
@@ -36,7 +36,7 @@ public class Day2Test {
     }
     
      @Test
-    public void testParts2(){
+     void testParts2(){
         String[] testList = {"1-3 a: abcde", "1-3 b: cdefg", "2-9 c: ccccccccc"};
         var result = new Day2().part2(testList);
         assertEquals(1, result);

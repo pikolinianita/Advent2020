@@ -15,7 +15,8 @@ import java.util.Scanner;
 
 class Parser {
     
-    int row, column;
+    int row;
+    int column;
     
     Parser (String s){
         String rowString = s.substring(0, 7).replace("B","1").replace("F", "0");
@@ -34,13 +35,13 @@ public class Day5 {
    
     String[] entries;
     
-    Day5(){};
+    Day5(){}
     
     Day5(String path) throws FileNotFoundException{
       try (java.util.Scanner sc = new Scanner(new File(path))) {
           entries = sc.tokens().toArray(String[]::new);
         }
-     };
+     }
       
     void calculate(){
         Utils.printResult("Day 5",part1(entries),part2(entries));

@@ -17,9 +17,9 @@ record BusAndTime(int bus, int time){
 
 public class Day13 {
    
-    Day13(){};
+    Day13(){}
     
-    int timeStamp ;
+    int timeStamp;
     int[] busses;
     
     Day13(String path) throws FileNotFoundException{

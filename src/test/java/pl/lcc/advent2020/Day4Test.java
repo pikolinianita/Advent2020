@@ -5,11 +5,8 @@
  */
 package pl.lcc.advent2020;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author Teresa
  */
-public class Day4Test {
+ class Day4Test {
     
     String[] falseLines = {"eyr:1972 cid:100 hcl:#18171d ecl:amb hgt:170 pid:186cm iyr:2018 byr:1926",
         "iyr:2019 hcl:#602927 eyr:1967 hgt:170cm ecl:grn pid:012533040 byr:1946",

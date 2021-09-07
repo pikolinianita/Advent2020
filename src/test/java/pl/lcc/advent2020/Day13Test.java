@@ -5,7 +5,6 @@
  */
 package pl.lcc.advent2020;
 
-import java.io.FileNotFoundException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author piko
  */
-public class Day13Test {
+ class Day13Test {
     
     int timeStamp = 939;
     int[] busses = {7,13,59,31,19};
@@ -22,7 +21,7 @@ public class Day13Test {
     }
 
     @Test
-    public void testPart1() {
+     void testPart1() {
        int result = new Day13().findBusSolution(timeStamp, busses);
        assertEquals(295, result);
     }

@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author piko
  */
-public class Day6Test {
+class Day6Test {
 
     String simpleInput = """
                   abcx
@@ -24,14 +24,14 @@ public class Day6Test {
     }
 
     @Test
-    public void testCountP1() {
+    void testCountP1() {
        
         var result = new Day6().countForP1(simpleInput);
         assertEquals(6, result);
     }
 
     @Test
-    public void testPart1(){
+    void testPart1(){
        var result = new Day6().part1(groupInput);
        assertEquals(11, result);
     }
@@ -54,13 +54,13 @@ public class Day6Test {
         "b"};
     
     @Test
-    public void testCountP2() {
+    void testCountP2() {
         var result = new Day6().countForP2(simpleInput);
         assertEquals(3, result);
     }
     
     @Test
-    public void testPart2(){
+    void testPart2(){
        var result = new Day6().part2(groupInput);
        assertEquals(6, result);
     }

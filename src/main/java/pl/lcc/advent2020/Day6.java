@@ -8,18 +8,16 @@ package pl.lcc.advent2020;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 import static java.util.stream.Collectors.*;
-import java.util.stream.Stream;
 
 public class Day6 {
    
     String[] groups;
     
-    Day6(){};
+    Day6(){}
     
     Day6 (String path) throws FileNotFoundException {
         try (Scanner sc = new Scanner(new File(path))) {

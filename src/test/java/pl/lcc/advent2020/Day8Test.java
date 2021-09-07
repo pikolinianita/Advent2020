@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author piko
  */
-public class Day8Test {
+ class Day8Test {
     
     String input = """
                    nop +1
@@ -42,14 +42,14 @@ public class Day8Test {
     }
     
     @Test
-    public void testRecord() {
+     void testRecord() {
         var obj = new Command("acc -99");
         assertEquals("acc", obj.command());
         assertEquals(-99, obj.value());
     }
     
     @Test
-    public void part1Test() {        
+     void part1Test() {        
         // given
          var exampleLines = input.lines().toArray(String[]::new);
         // when
@@ -59,7 +59,7 @@ public class Day8Test {
     }
     
     @Test
-    public void testP1AllOk() {        
+     void testP1AllOk() {        
         // given
         var exampleLines = inputp2.lines().toArray(String[]::new);
         // when
@@ -69,7 +69,7 @@ public class Day8Test {
     }
     
     @Test
-    public void testP2() {        
+     void testP2() {        
         // given
         var exampleLines = input.lines().toArray(String[]::new);
         // when
