@@ -21,10 +21,9 @@ record Command(String command, int value) {
     public Command(String line) {
         this(line.substring(0, 3), Integer.parseInt(line.substring(4)));
     }
+}
 
-};
-
-record State (int position, int value){};
+record State (int position, int value){}
 
 public class Day8 {
 
@@ -33,14 +32,13 @@ public class Day8 {
     private String[] lines;
 
     Day8() {
-
     }
 
     Day8(String path) throws FileNotFoundException {
         this();
         try ( java.util.Scanner sc = new Scanner(new File(path))) {
             lines = sc.useDelimiter("\n").tokens().toArray(String[]::new);
-        };
+        }
     }
 
     void calculate() {

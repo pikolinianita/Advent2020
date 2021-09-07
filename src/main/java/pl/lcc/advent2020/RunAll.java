@@ -7,7 +7,7 @@ package pl.lcc.advent2020;
 
 import java.io.FileNotFoundException;
 
-public class Alles {
+public class RunAll {
     public static void main(String[] args) throws FileNotFoundException {
         new Day1("day1.txt").calculate();
         new Day2("day2.txt").calculate();
