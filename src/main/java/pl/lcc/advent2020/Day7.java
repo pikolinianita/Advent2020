@@ -43,7 +43,7 @@ class ColoredBag {
 
     void addThisToMap(Map<String, List<String>> db) {
         mayContains.forEach(item
-                -> db.merge(item, new ArrayList(List.of(kindOfBag)),
+                -> db.merge(item, new ArrayList<>(List.of(kindOfBag)),
                         (old, nw) -> {
                             old.add(kindOfBag);
                             return old;

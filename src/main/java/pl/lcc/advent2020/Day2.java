@@ -46,7 +46,7 @@ public class Day2 {
    
     String[] inputLines;
     
-    Day2(){};
+    Day2(){}
     
     public Day2(String path) throws FileNotFoundException{
         try (Scanner sc = new Scanner(new File(path))) {

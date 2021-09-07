@@ -66,7 +66,7 @@ class AdvancedAdapterManager{
             case 3->  2;
             case 4-> 4;
             case 5-> 7;
-            default -> {throw new RuntimeException("Wrong size: " + size);}
+            default -> {throw new IllegalStateException("Wrong size: " + size);}
         };
     }
 

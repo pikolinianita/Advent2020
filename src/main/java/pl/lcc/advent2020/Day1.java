@@ -23,9 +23,9 @@ public class Day1 {
         }
     }
     
-    Day1(){};
+    Day1(){}
     
-    int DAY1_value = 2020;
+    final int DAY1_VALUE = 2020;
     
     int part1(int[] input) {
         var sortedInput = input;

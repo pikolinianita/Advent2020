@@ -8,10 +8,9 @@ package pl.lcc.advent2020;
 
 public class Day3 {
    
-    Day3(){};
+    Day3(){}
 
-    Day3(String input) {
-       
+    Day3(String input) {       
     }
       
     void calculate(){

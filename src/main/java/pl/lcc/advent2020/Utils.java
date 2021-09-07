@@ -11,6 +11,10 @@ package pl.lcc.advent2020;
  */
 public class Utils {
     
+    private Utils() {
+         throw new IllegalStateException("Utility class");
+  }
+    
     static void printResult(String name, long part1, long part2){
         System.out.println(name + " result:");
         System.out.println("\t part1: " + part1);
