@@ -45,16 +45,10 @@ class AdapterManager {
 
     private void addDiff(int diff) {
         switch (diff) {
-            case 1 -> {
-                ones++;
-            }
-            case 2 -> {
-                twos++;
-            }
-            case 3 -> {
-                threes++;
-            }
-            default -> {throw new IllegalStateException("Wrong distance");}
+            case 1 -> ones++;
+            case 2 -> twos++;
+            case 3 ->  threes++;
+            default -> throw new IllegalStateException("Wrong distance");
         }
     }
 
@@ -68,10 +62,10 @@ class AdvancedAdapterManager{
 
     static long calculateCombinations(int size) {
         return switch(size){
-            case 1,2 -> {yield 1;} 
-            case 3-> {yield 2;}
-            case 4-> {yield 4;}
-            case 5-> {yield 7;}
+            case 1,2 -> 1; 
+            case 3->  2;
+            case 4-> 4;
+            case 5-> 7;
             default -> {throw new RuntimeException("Wrong size: " + size);}
         };
     }
@@ -84,18 +78,7 @@ class AdvancedAdapterManager{
      adapters[0] = Integer.MAX_VALUE;
      Arrays.sort(adapters);
      adapters[adapters.length-1]=adapters[adapters.length-2]+3;
-     System.out.println(Arrays.toString(adapters));
-}
-    
-    int[] findJointPoint(){
-        for (int i = 0; i < adapters.length - 1; i++) {
-            var diff = adapters[i + 1] - adapters[i];
-            if (diff==3) {
-                System.out.println(adapters[i]);
-            }
-        }
-        return null;
-    }
+}     
     
     ArrayList<int[]> findAreas(){
         int lower = 0;

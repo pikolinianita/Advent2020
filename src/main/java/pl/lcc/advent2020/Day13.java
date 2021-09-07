@@ -30,10 +30,6 @@ public class Day13 {
                  .filter(s -> !"x".equals(s))
                  .mapToInt(Integer::parseInt)
                  .toArray();
-         
-         System.out.println(timeStamp);
-         System.out.println(Arrays.toString(busses));
-          //System.out.println(input);
           }
     }
       
@@ -54,7 +50,7 @@ public class Day13 {
                  .mapToObj(bus -> new BusAndTime( bus, bus - (timeStamp % bus)))
                  .sorted((a,b)-> a.time() - b.time())
                  .findFirst()
-                 .get()
+                 .orElseThrow()
                  .getAnswerP1();
         
     }
