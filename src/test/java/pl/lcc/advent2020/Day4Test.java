@@ -61,11 +61,5 @@ public class Day4Test {
                  .toList();
         assertIterableEquals(List.of(true, true, true, true), trueList);
      }
-     
-     @Test
-     void testDelimiters() throws FileNotFoundException{
-         var sc = new Scanner(new File("day4.txt"));
-         System.out.println(sc.delimiter().pattern());
-     }
 }
 
