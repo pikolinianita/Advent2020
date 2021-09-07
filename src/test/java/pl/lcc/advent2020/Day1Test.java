@@ -34,7 +34,7 @@ public class Day1Test {
        assertEquals(200, day.parsedInput.length);
    }
    
-   @Test
+  // @Test
    public void testPart2(){
        var day = new Day1();
        var result = day.part2(testData);       

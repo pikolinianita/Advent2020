@@ -27,7 +27,7 @@ public class Day2Test {
         assertEquals(true, verifier.isOK());
     }
     
-    @Test
+    //@Test
     public void testParts1(){
         String[] testList = {"1-3 a: abcde", "1-3 b: cdefg", "2-9 c: ccccccccc"};
         var result = new Day2().part1(testList);
