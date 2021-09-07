@@ -11,9 +11,7 @@ public class DayTemplate {
     DayTemplate(){};
       
     void calculate(){
-        System.out.println("Day 1 result:");
-        System.out.println("\t part1: " + part1(null));
-        System.out.println("\t part2: " + part2(null));
+        Utils.printResult("Template",part1(null),part2(null));
     }
     
     int part1(int[] input) {

@@ -119,9 +119,7 @@ public class Day4 {
     Day4(){};
       
     void calculate(){
-        System.out.println("Day 4 result:");
-        System.out.println("\t part1: " + part1(entries));
-        System.out.println("\t part2: " + part2(entries));
+       Utils.printResult("Day 4", part1(entries),part2(entries));
     }
     
     int part1(String[] input) {

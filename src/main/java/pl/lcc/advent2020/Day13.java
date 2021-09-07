@@ -38,9 +38,7 @@ public class Day13 {
     }
       
     void calculate(){
-        System.out.println("Day 1 result:");
-        System.out.println("\t part1: " + part1());
-        System.out.println("\t part2: " + part2(null));
+        Utils.printResult("Day 13",part1(),part2(null));
     }
     
     int part1() {

@@ -7,9 +7,13 @@ package pl.lcc.advent2020;
 
 /**
  *
- * @author Teresa
+ * @author lcc
  */
 public class Utils {
     
-    static String[] getTokensFromFile(String delimiter){return null;}
+    static void printResult(String name, long part1, long part2){
+        System.out.println(name + " result:");
+        System.out.println("\t part1: " + part1);
+        System.out.println("\t part2: " + part2);
+    }
 }

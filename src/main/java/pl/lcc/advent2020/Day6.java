@@ -29,9 +29,7 @@ public class Day6 {
     }
       
     void calculate(){
-        System.out.println("Day 6 result:");
-        System.out.println("\t part1: " + part1(groups));
-        System.out.println("\t part2: " + part2(groups));
+       Utils.printResult("Day 6",part1(groups),part2(groups));
     }
     
     long part1(String[] input) {

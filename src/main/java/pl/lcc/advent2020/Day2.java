@@ -58,9 +58,7 @@ public class Day2 {
     }
       
     void calculate(){
-        System.out.println("Day 2 result:");
-        System.out.println("\t part1: " + part1(inputLines));
-        System.out.println("\t part2: " + part2(inputLines));
+        Utils.printResult("Day 2",part1(inputLines),part2(inputLines));
     }
     
     int part1(String[] input) {

@@ -44,9 +44,7 @@ public class Day8 {
     }
 
     void calculate() {
-        System.out.println("Day 1 result:");
-        System.out.println("\t part1: " + part1(lines));
-        System.out.println("\t part2: " + part2(lines));
+       Utils.printResult("Day 8", part1(lines),part2(lines));
     }
 
     int part1(String[] input) {

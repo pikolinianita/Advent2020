@@ -54,6 +54,7 @@ class AdapterManager {
             case 3 -> {
                 threes++;
             }
+            default -> {throw new IllegalStateException("Wrong distance");}
         }
     }
 
@@ -127,9 +128,7 @@ public class Day10 {
     }
 
     void calculate() {
-        System.out.println("Day 1 result:");
-        System.out.println("\t part1: " + part1(input));
-        System.out.println("\t part2: " + part2(input));
+        Utils.printResult("Day 10",part1(input),part2(input));
     }
 
     int part1(int[] input) {

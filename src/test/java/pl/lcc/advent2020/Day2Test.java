@@ -40,13 +40,5 @@ public class Day2Test {
         String[] testList = {"1-3 a: abcde", "1-3 b: cdefg", "2-9 c: ccccccccc"};
         var result = new Day2().part2(testList);
         assertEquals(1, result);
-    }
-           
-    @Test
-    public void testPVPart2(){
-        var verifier = new PassVerifier("2-9 c: ccccccccc");
-        System.out.println(verifier.isOK());
-         System.out.println(verifier.isOKpart2());
-        //assertEquals(true,verifier.isOKpart2() );
-    }
+    }    
 }

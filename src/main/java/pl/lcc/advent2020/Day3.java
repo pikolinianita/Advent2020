@@ -15,9 +15,7 @@ public class Day3 {
     }
       
     void calculate(){
-        System.out.println("Day 3 result:");
-        System.out.println("\t part1: " + part1(null));
-        System.out.println("\t part2: " + part2(null));
+        Utils.printResult("Day 3",part1(null),part2(null));
     }
     
     int part1(int[] input) {

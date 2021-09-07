@@ -43,10 +43,8 @@ public class Day1 {
         return sortedInput[lower] * sortedInput[higher];
     }
     
-    void calculate(){
-        System.out.println("Day 1 result:");
-        System.out.println("\t part1: " + part1(parsedInput));
-        System.out.println("\t part2: " + part2(parsedInput));
+    void calculate(){        
+        Utils.printResult("Day 1", part1(parsedInput), part2(parsedInput));  
     }
 
     int part2(int[] input) {
