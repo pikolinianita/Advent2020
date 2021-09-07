@@ -13,7 +13,7 @@ import java.util.Scanner;
 record BusAndTime(int bus, int time){
 
     int getAnswerP1() {return bus * time;}
-};
+}
 
 public class Day13 {
    

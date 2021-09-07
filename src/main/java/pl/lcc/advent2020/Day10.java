@@ -68,7 +68,7 @@ class AdvancedAdapterManager{
             case 3->  2;
             case 4-> 4;
             case 5-> 7;
-            default -> {throw new IllegalStateException("Wrong size: " + size);}
+            default -> throw new IllegalStateException("Wrong size: " + size);
         };
     }
 
@@ -84,7 +84,6 @@ class AdvancedAdapterManager{
     
     ArrayList<int[]> findAreas(){
         int lower = 0;
-        int higher;
         ArrayList<int[]> arr = new ArrayList<>();
         for (int i = 0; i < adapters.length-1; i++){
             var diff = adapters[i + 1] - adapters[i];
@@ -94,9 +93,9 @@ class AdvancedAdapterManager{
             }
         }
     return arr;
-    }
-    
+    }    
 }
+
 public class Day10 {
 
     int[] input;
