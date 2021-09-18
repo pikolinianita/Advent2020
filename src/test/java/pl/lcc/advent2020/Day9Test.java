@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author piko
  */
-public class Day9Test{
+class Day9Test{
     
     long[] inputArray = {20, 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,1,21,22,23,24,25,45,-1};
     
@@ -27,7 +27,7 @@ public class Day9Test{
     }
     
     @Test
-    public void testFromZero() {
+    void testFromZero() {
         var day = new Day9(inputArray,25);
         assertTrue(day.verify(0));
     }

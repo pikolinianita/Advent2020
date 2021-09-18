@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author piko
  */
-public class Day3Test{
+class Day3Test{
     
     String input = """
                    ..##.......
@@ -41,7 +41,7 @@ public class Day3Test{
     }
 
     @Test
-    public void testPart1() {
+    void testPart1() {
         var day = new Day3(inputLines);
         var result = day.part1();
         assertEquals(7, result); 
