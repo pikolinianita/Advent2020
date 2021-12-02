@@ -10,9 +10,48 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.Scanner;
-import static pl.lcc.advent2020.Direction.*;
+import static pl.lcc.advent2020.Day12.Direction.*;
 
-enum Direction{
+public class Day12 {
+   
+    String[] parsedString;
+    
+    Day12(String path) throws FileNotFoundException {
+        try ( Scanner sc = new Scanner(new File(path))) {
+            sc.useDelimiter("\n");
+            parsedString = sc
+                    .tokens()
+                    .toArray(String[]::new);
+        }
+    }    
+      
+    void calculate(){
+        Utils.printResult("Template",part1(),part2(null));
+    }
+    
+    int part1() {
+        var ship = new Ship();
+        return Arrays.stream(parsedString)
+                .map(ShipCommand::new)
+                .reduce(ship, (Ship s, ShipCommand c) -> s.move(c),Ship::dummyMethod)
+                .getManchattan();
+    }
+
+    int part2(int[] input) {
+        var ship = new ShipWithWaypoint();
+        return Arrays.stream(parsedString)
+                .map(ShipCommand::new)
+                .reduce(ship, (Ship s, ShipCommand c) -> s.move(c),Ship::dummyMethod)
+                .getManchattan();
+    }
+    
+    public static void main(String[] args) throws FileNotFoundException {
+        new Day12("day12.txt").calculate();
+        
+        //1714 too high
+    }
+    
+    enum Direction{
     EAST(1,0) {
         @Override
         Direction turnLeft(int arc) {
@@ -98,7 +137,7 @@ enum Direction{
     
 }
 
-class ShipCommand{
+static class ShipCommand{
     int value;
     String letter;
 
@@ -118,7 +157,7 @@ class ShipCommand{
     
 }
 
-class Ship{
+static class Ship{
     int x;
     int y;
     Direction bowDirection;     
@@ -164,7 +203,7 @@ class Ship{
     
 }
 
-class ShipWithWaypoint extends Ship {
+static class ShipWithWaypoint extends Ship {
     int wpX;
     int wpY;
     
@@ -219,47 +258,8 @@ class ShipWithWaypoint extends Ship {
        int tmp = wpY;
        wpY = - wpX;
        wpX = tmp;
-    }
-    
+    } 
     
 }
-
-public class Day12 {
-   
-    String[] parsedString;
     
-    Day12(String path) throws FileNotFoundException {
-        try ( Scanner sc = new Scanner(new File(path))) {
-            sc.useDelimiter("\n");
-            parsedString = sc
-                    .tokens()
-                    .toArray(String[]::new);
-        }
-    }    
-      
-    void calculate(){
-        Utils.printResult("Template",part1(),part2(null));
-    }
-    
-    int part1() {
-        var ship = new Ship();
-        return Arrays.stream(parsedString)
-                .map(ShipCommand::new)
-                .reduce(ship, (Ship s, ShipCommand c) -> s.move(c),Ship::dummyMethod)
-                .getManchattan();
-    }
-
-    int part2(int[] input) {
-        var ship = new ShipWithWaypoint();
-        return Arrays.stream(parsedString)
-                .map(ShipCommand::new)
-                .reduce(ship, (Ship s, ShipCommand c) -> s.move(c),Ship::dummyMethod)
-                .getManchattan();
-    }
-    
-    public static void main(String[] args) throws FileNotFoundException {
-        new Day12("day12.txt").calculate();
-        
-        //1714 too high
-    }
 }

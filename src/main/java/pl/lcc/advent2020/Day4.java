@@ -14,7 +14,41 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-class DocEntry {
+
+
+public class Day4 {
+
+    String[] entries;
+
+    public Day4(String path) throws FileNotFoundException {
+        try ( java.util.Scanner sc = new Scanner(new File(path))) {
+            sc.useDelimiter("\n\r\n");
+            entries = sc.tokens().toArray(String[]::new);
+        }
+    }
+
+    Day4() {
+    }
+      
+    void calculate() {
+        Utils.printResult("Day 4", part1(entries), part2(entries));
+    }
+
+    int part1(String[] input) {
+        return (int) Arrays.stream(input)
+                .map(DocEntry::new)
+                .filter(DocEntry::validForP1)
+                .count();
+    }
+
+    int part2(String[] input) {
+        return (int) Arrays.stream(input)
+                .map(DocEntry::new)
+                .filter(DocEntry::validForP2)
+                .count();
+    }
+    
+    static class DocEntry {
 
     Map<String, String> passport;
 
@@ -105,36 +139,4 @@ class DocEntry {
         return (pid.length() == 9) && pid.matches("\\d+");
     }
 }
-
-public class Day4 {
-
-    String[] entries;
-
-    public Day4(String path) throws FileNotFoundException {
-        try ( java.util.Scanner sc = new Scanner(new File(path))) {
-            sc.useDelimiter("\n\r\n");
-            entries = sc.tokens().toArray(String[]::new);
-        }
-    }
-
-    Day4() {
-    }
-      
-    void calculate() {
-        Utils.printResult("Day 4", part1(entries), part2(entries));
-    }
-
-    int part1(String[] input) {
-        return (int) Arrays.stream(input)
-                .map(DocEntry::new)
-                .filter(DocEntry::validForP1)
-                .count();
-    }
-
-    int part2(String[] input) {
-        return (int) Arrays.stream(input)
-                .map(DocEntry::new)
-                .filter(DocEntry::validForP2)
-                .count();
-    }
 }

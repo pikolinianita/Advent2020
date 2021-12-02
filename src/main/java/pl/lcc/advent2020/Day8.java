@@ -16,14 +16,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-record Command(String command, int value) {
 
-    public Command(String line) {
-        this(line.substring(0, 3), Integer.parseInt(line.substring(4)));
-    }
-}
-
-record State (int position, int value){}
 
 public class Day8 {
 
@@ -171,4 +164,13 @@ public class Day8 {
             return position==endPosition;
         }
     }
+    
+    record Command(String command, int value) {
+
+    public Command(String line) {
+        this(line.substring(0, 3), Integer.parseInt(line.substring(4)));
+    }
+}
+
+record State (int position, int value){}
 }

@@ -21,34 +21,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-class ColoredBag {
 
-    String kindOfBag;
-
-    List<String> mayContains;
-
-    public ColoredBag(List<String> parsedLine) {
-        mayContains = new ArrayList<>();
-        kindOfBag = parsedLine.get(0);
-        for (int i = 1; i < parsedLine.size(); i++) {
-            mayContains.add(parsedLine.get(i));
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "ColoredBag{" + "kindOfBag=" + kindOfBag + ", mayContains=" + mayContains + '}';
-    }
-
-    void addThisToMap(Map<String, List<String>> db) {
-        mayContains.forEach(item
-                -> db.merge(item, new ArrayList<>(List.of(kindOfBag)),
-                        (old, nw) -> {
-                            old.add(kindOfBag);
-                            return old;
-                        }));
-    }    
-}
 
 public class Day7 {
 
@@ -229,4 +202,34 @@ public class Day7 {
             return result;
         }        
     }
+    
+    static class ColoredBag {
+
+    String kindOfBag;
+
+    List<String> mayContains;
+
+    public ColoredBag(List<String> parsedLine) {
+        mayContains = new ArrayList<>();
+        kindOfBag = parsedLine.get(0);
+        for (int i = 1; i < parsedLine.size(); i++) {
+            mayContains.add(parsedLine.get(i));
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ColoredBag{" + "kindOfBag=" + kindOfBag + ", mayContains=" + mayContains + '}';
+    }
+
+    void addThisToMap(Map<String, List<String>> db) {
+        mayContains.forEach(item
+                -> db.merge(item, new ArrayList<>(List.of(kindOfBag)),
+                        (old, nw) -> {
+                            old.add(kindOfBag);
+                            return old;
+                        }));
+    }    
+}
+    
 }

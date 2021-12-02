@@ -32,20 +32,20 @@ import static org.junit.jupiter.api.Assertions.*;
    
     @Test
     void testDocEntry(){
-        var de = new DocEntry("ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm");
+        var de = new Day4.DocEntry("ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm");
         assertTrue(de.validForP1());
     }
     @Test
     void testDocEntry2(){
-        var de = new DocEntry("ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm");
+        var de = new Day4.DocEntry("ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm");
         assertTrue(de.validForP2());
     }
     
     @Test
      void testWrongEntries(){
         var falseList = Arrays.stream(falseLines)
-                 .map(DocEntry::new )
-                 .map(DocEntry::validForP2)
+                 .map(Day4.DocEntry::new )
+                 .map(Day4.DocEntry::validForP2)
                  .toList();
         assertIterableEquals(List.of(false, false, false, false), falseList);
      }
@@ -53,8 +53,8 @@ import static org.junit.jupiter.api.Assertions.*;
      @Test
      void testTrueEntries(){
         var trueList = Arrays.stream(trueLines)
-                 .map(DocEntry::new )
-                 .map(DocEntry::validForP2)
+                 .map(Day4.DocEntry::new )
+                 .map(Day4.DocEntry::validForP2)
                  .toList();
         assertIterableEquals(List.of(true, true, true, true), trueList);
      }

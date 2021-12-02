@@ -13,23 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-class Parser {
-    
-    int row;
-    int column;
-    
-    Parser (String s){
-        String rowString = s.substring(0, 7).replace("B","1").replace("F", "0");
-        String columnString =  s.substring(7, 10).replace("R","1").replace("L", "0");
-        row = Integer.parseInt(rowString, 2);
-        column = Integer.parseInt(columnString, 2);
-    }
-    
-    int getId(){
-        return row * 8 + column;
-    }
-    
-}
+
 
 public class Day5 {
    
@@ -79,4 +63,23 @@ public class Day5 {
            i++;
        }
     }
+    
+    static class Parser {
+    
+    int row;
+    int column;
+    
+    Parser (String s){
+        String rowString = s.substring(0, 7).replace("B","1").replace("F", "0");
+        String columnString =  s.substring(7, 10).replace("R","1").replace("L", "0");
+        row = Integer.parseInt(rowString, 2);
+        column = Integer.parseInt(columnString, 2);
+    }
+    
+    int getId(){
+        return row * 8 + column;
+    }
+    
+}
+    
 }

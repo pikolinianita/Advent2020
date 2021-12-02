@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
     @Test
      void testParse() {
-        var verifier = new PassVerifier("1-3 a: abcde");
+        var verifier =  new Day2.PassVerifier("1-3 a: abcde");
         assertEquals(1, verifier.min);
         assertEquals(3, verifier.max);
         assertEquals("a", verifier.letter);

@@ -20,7 +20,7 @@ class Day5Test {
 
     @Test
      void testParser1() {
-        var par = new Parser("BFFFBBFRRR");
+        var par = new Day5.Parser("BFFFBBFRRR");
         assertEquals(70, par.row);
         assertEquals(7, par.column);
         assertEquals(567, par.getId());
@@ -30,7 +30,7 @@ class Day5Test {
     
     @Test
      void testParser2() {
-        var par = new Parser("FFFBBBFRRR");
+        var par = new Day5.Parser("FFFBBBFRRR");
         assertEquals(14, par.row);
         assertEquals(7, par.column);
         assertEquals(119, par.getId());
@@ -38,7 +38,7 @@ class Day5Test {
     
     @Test
      void testParser3() {
-        var par = new Parser("BBFFBBFRLL");
+        var par = new Day5.Parser("BBFFBBFRLL");
         assertEquals(102, par.row);
         assertEquals(4, par.column);
         assertEquals(820, par.getId());

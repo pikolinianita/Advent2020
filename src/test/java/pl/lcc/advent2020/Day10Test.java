@@ -23,7 +23,7 @@ class Day10Test {
 
     @Test
     void testAdapter() {
-        var adapter = new AdapterManager(inputSmall);
+        var adapter = new Day10.AdapterManager(inputSmall);
         adapter.calculate();
         System.out.println(adapter.toString());
         var result = adapter.threes() * adapter.ones();
@@ -33,10 +33,10 @@ class Day10Test {
     
     @Test
     void findAreasSmall() {
-        var result = new AdvancedAdapterManager(inputSmall).findAreas()
+        var result = new Day10.AdvancedAdapterManager(inputSmall).findAreas()
                 .stream()
                 .mapToInt(a -> a.length)
-                .mapToLong(AdvancedAdapterManager::calculateCombinations)
+                .mapToLong(Day10.AdvancedAdapterManager::calculateCombinations)
                 .reduce((a,b) -> a * b)
                 .getAsLong();
         assertEquals(8, result);
@@ -45,10 +45,10 @@ class Day10Test {
     
     @Test
     void findAreasLrg()  {
-        var result = new AdvancedAdapterManager(inputLarge).findAreas()
+        var result = new Day10.AdvancedAdapterManager(inputLarge).findAreas()
                 .stream()
                 .mapToInt(a -> a.length)
-                .mapToLong(AdvancedAdapterManager::calculateCombinations)
+                .mapToLong(Day10.AdvancedAdapterManager::calculateCombinations)
                 .reduce((a,b) -> a * b)
                 .getAsLong();
         assertEquals(19208, result);

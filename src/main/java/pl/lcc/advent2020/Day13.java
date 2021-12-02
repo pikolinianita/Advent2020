@@ -10,10 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-record BusAndTime(int bus, int time){
 
-    int getAnswerP1() {return bus * time;}
-}
 
 public class Day13 {
    
@@ -57,4 +54,10 @@ public class Day13 {
     public static void main(String[] args) throws FileNotFoundException {
         new Day13("day13.txt").calculate();
     }
+    
+    record BusAndTime(int bus, int time){
+
+    int getAnswerP1() {return bus * time;}
+}
+    
 }

@@ -23,20 +23,20 @@ public class Day12Test {
     
     @Test
     public void testShipSailing() {
-        var ship = new Ship();
-        Ship result = input.stream()
-                .map(ShipCommand::new)
-                .reduce(ship, (Ship s,ShipCommand c) -> s.move(c), Ship::dummyMethod);
+        var ship = new Day12.Ship();
+        Day12.Ship result = input.stream()
+                .map(Day12.ShipCommand::new)
+                .reduce(ship, (Day12.Ship s,Day12.ShipCommand c) -> s.move(c), Day12.Ship::dummyMethod);
         assertThat(result.getManchattan()).as("manch").isEqualTo(25);
                 
     }
     
      @Test
     public void testShipWPSailing() {
-        var ship = new ShipWithWaypoint();
-        Ship result = input.stream()
-                .map(ShipCommand::new)
-                .reduce(ship, (Ship s,ShipCommand c) -> s.move(c), Ship::dummyMethod);
+        var ship = new Day12.ShipWithWaypoint();
+        Day12.Ship result = input.stream()
+                .map(Day12.ShipCommand::new)
+                .reduce(ship, (Day12.Ship s,Day12.ShipCommand c) -> s.move(c), Day12.Ship::dummyMethod);
         assertThat(result.getManchattan()).as("manch").isEqualTo(286);
     
 }}

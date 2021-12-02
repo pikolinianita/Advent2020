@@ -26,7 +26,7 @@ public class Day14Test{
     @Test
     void testSomeMask() {
        var input = BitSetfromString("0101");
-       var sut = new Mask("0XX1");
+       var sut = new Day14.Mask("0XX1");
        var result = sut.apply(input).toString();
        assertThat(result).isEqualTo("{0, 2}");
     }
@@ -34,7 +34,7 @@ public class Day14Test{
     @Test
     void testTransparentMask() {
        var input = BitSetfromString("0101");
-       var sut = new Mask("XXXX");
+       var sut = new Day14.Mask("XXXX");
        var result = sut.apply(input).toString();
        assertThat(result).isEqualTo("{0, 2}");
     }
@@ -42,7 +42,7 @@ public class Day14Test{
     @Test
     void testZeroMask() {
        var input = BitSetfromString("0101");
-       var sut = new Mask("0000");
+       var sut = new Day14.Mask("0000");
        var result = sut.apply(input).toString();
        assertThat(result).isEqualTo("{}");
     }
@@ -50,7 +50,7 @@ public class Day14Test{
      @Test
     void testFullMask() {
        var input = BitSetfromString("0101");
-       var sut = new Mask("1111");
+       var sut = new Day14.Mask("1111");
        var result = sut.apply(input).toString();
        assertThat(result).isEqualTo("{0, 1, 2, 3}");
     }
@@ -58,7 +58,7 @@ public class Day14Test{
     @Test
     void testMaskToLong() {
        var input = BitSetfromString("0101");
-       var sut = new Mask("1111");       
+       var sut = new Day14.Mask("1111");       
        var result = sut.apply(input).toLongArray()[0];
        var resStr = Long.toBinaryString(sut.apply(input).toLongArray()[0]);
        assertThat(result).isEqualTo(15);
@@ -68,7 +68,7 @@ public class Day14Test{
     @Test
     void testCorrValues(){
        var input = BitSetfromLong(11);
-       var sut = new Mask("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X");
+       var sut = new Day14.Mask("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X");
        var result = sut.apply(input).toLongArray()[0];
        assertThat(result).isEqualTo(73);
     }
@@ -76,7 +76,7 @@ public class Day14Test{
    @Test
     void testOtherValues(){
        var input = BitSetfromLong(101);
-       var sut = new Mask("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X");
+       var sut = new Day14.Mask("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X");
        var result = sut.apply(input).toLongArray()[0];
        assertThat(result).isEqualTo(101);
     }   

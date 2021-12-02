@@ -11,7 +11,44 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-class AdapterManager {
+public class Day10 {
+
+    int[] input;
+
+    Day10() {
+    }
+
+    Day10(String path) throws FileNotFoundException {
+        try ( Scanner sc = new Scanner(new File(path))) {
+            input = sc.tokens()
+                    .mapToInt(Integer::parseInt)
+                    .toArray();
+        }
+    }
+
+    void calculate() {
+        Utils.printResult("Day 10",part1(input),part2(input));
+    }
+
+    int part1(int[] input) {
+        var adapter = new AdapterManager(input); 
+        adapter.calculate();
+        return adapter.ones() * adapter.threes();
+    }
+
+    long part2(int[] input) {
+       return new AdvancedAdapterManager(input).findAreas()
+                .stream()
+                .mapToInt(a -> a.length)
+                .mapToLong(AdvancedAdapterManager::calculateCombinations)
+                .reduce((a,b) -> a * b)
+                .getAsLong();
+    }
+    public static void main(String[] args) throws FileNotFoundException {
+        new Day10("Day10.txt").calculate();
+    }
+    
+    static class AdapterManager {
 
     int[] adapters;
 
@@ -60,7 +97,7 @@ class AdapterManager {
     }
 }
 
-class AdvancedAdapterManager{
+static class AdvancedAdapterManager{
 
     static long calculateCombinations(int size) {
         return switch(size){
@@ -95,41 +132,4 @@ class AdvancedAdapterManager{
     return arr;
     }    
 }
-
-public class Day10 {
-
-    int[] input;
-
-    Day10() {
-    }
-
-    Day10(String path) throws FileNotFoundException {
-        try ( Scanner sc = new Scanner(new File(path))) {
-            input = sc.tokens()
-                    .mapToInt(Integer::parseInt)
-                    .toArray();
-        }
-    }
-
-    void calculate() {
-        Utils.printResult("Day 10",part1(input),part2(input));
-    }
-
-    int part1(int[] input) {
-        var adapter = new AdapterManager(input); 
-        adapter.calculate();
-        return adapter.ones() * adapter.threes();
-    }
-
-    long part2(int[] input) {
-       return new AdvancedAdapterManager(input).findAreas()
-                .stream()
-                .mapToInt(a -> a.length)
-                .mapToLong(AdvancedAdapterManager::calculateCombinations)
-                .reduce((a,b) -> a * b)
-                .getAsLong();
-    }
-    public static void main(String[] args) throws FileNotFoundException {
-        new Day10("Day10.txt").calculate();
-    }
 }

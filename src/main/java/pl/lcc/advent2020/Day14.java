@@ -15,36 +15,7 @@ import java.util.function.UnaryOperator;
 
 
 
-class Mask implements UnaryOperator<BitSet> {
-    BitSet andMask; //1110 X->1
-    BitSet orMask;  //1000 X->0
-    
-    public Mask(String description){
-        andMask = new BitSet(description.length());
-        orMask = new BitSet(description.length());
-        for(int i =0; i<description.length(); i++){       
-            switch(description.charAt(i)){
-                case '1' -> {
-                    andMask.set(description.length() - i -1, true);
-                    orMask.set(description.length() - i -1, true);}
-                 case '0' -> {
-                    andMask.set(description.length() - i -1, false);
-                    orMask.set(description.length() - i -1, false);}
-                  case 'X' -> {
-                    andMask.set(description.length() - i -1, true);
-                    orMask.set(description.length() - i -1, false);}
-                  default -> throw new IllegalArgumentException("----"+description.charAt(i)+"----");
-            }
-        }            
-    }
 
-    @Override
-    public BitSet apply(BitSet t) {
-        t.and(andMask);
-        t.or(orMask);
-        return t;     
-    }    
-}
 
 public class Day14 {
 
@@ -99,4 +70,35 @@ public class Day14 {
     public static void main(String[] args) throws FileNotFoundException {
        new Day14("day14.txt").calculate(); //5786255997050 was too low
     }
+    
+  static class Mask implements UnaryOperator<BitSet> {
+    BitSet andMask; //1110 X->1
+    BitSet orMask;  //1000 X->0
+    
+    public Mask(String description){
+        andMask = new BitSet(description.length());
+        orMask = new BitSet(description.length());
+        for(int i =0; i<description.length(); i++){       
+            switch(description.charAt(i)){
+                case '1' -> {
+                    andMask.set(description.length() - i -1, true);
+                    orMask.set(description.length() - i -1, true);}
+                 case '0' -> {
+                    andMask.set(description.length() - i -1, false);
+                    orMask.set(description.length() - i -1, false);}
+                  case 'X' -> {
+                    andMask.set(description.length() - i -1, true);
+                    orMask.set(description.length() - i -1, false);}
+                  default -> throw new IllegalArgumentException("----"+description.charAt(i)+"----");
+            }
+        }            
+    }
+
+    @Override
+    public BitSet apply(BitSet t) {
+        t.and(andMask);
+        t.or(orMask);
+        return t;     
+    }    
+}
 }

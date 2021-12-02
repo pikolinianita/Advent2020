@@ -21,7 +21,7 @@ public class Day9 {
         this.mask = mask;
     }
     
-    private Day9(String path) throws FileNotFoundException {
+    public Day9(String path) throws FileNotFoundException {
         mask = 25;
         try ( Scanner sc = new Scanner(new File(path))) {           
             input = sc

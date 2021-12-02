@@ -43,7 +43,7 @@ import static org.junit.jupiter.api.Assertions.*;
     
     @Test
      void testRecord() {
-        var obj = new Command("acc -99");
+        var obj = new Day8.Command("acc -99");
         assertEquals("acc", obj.command());
         assertEquals(-99, obj.value());
     }
