@@ -52,8 +52,7 @@ public class Day14 {
         return -1;
     }
 
-    private long getP1Answer() {
-        System.out.println(registers);
+    private long getP1Answer() {        
         return registers.values().stream().mapToLong(l -> l).sum();       
                 }
 

@@ -55,8 +55,7 @@ public class Day15 {
         private int getNumberNo(int number) {
             while (turn<number){
             findNext();
-        }
-            System.out.println(game.size());
+            }            
             return last;
         }
     }

@@ -25,7 +25,6 @@ class Day10Test {
     void testAdapter() {
         var adapter = new Day10.AdapterManager(inputSmall);
         adapter.calculate();
-        System.out.println(adapter.toString());
         var result = adapter.threes() * adapter.ones();
         assertEquals(35, result);
         assertEquals(12, adapter.threes() + adapter.ones() + adapter.twos());

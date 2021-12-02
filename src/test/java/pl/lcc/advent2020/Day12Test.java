@@ -17,18 +17,13 @@ public class Day12Test {
     
     List<String> input = List.<String>of("F10","N3","F7","R90","F11");
     
-    public Day12Test() {
-       
-    }
-    
     @Test
     public void testShipSailing() {
         var ship = new Day12.Ship();
         Day12.Ship result = input.stream()
                 .map(Day12.ShipCommand::new)
                 .reduce(ship, (Day12.Ship s,Day12.ShipCommand c) -> s.move(c), Day12.Ship::dummyMethod);
-        assertThat(result.getManchattan()).as("manch").isEqualTo(25);
-                
+        assertThat(result.getManchattan()).as("manch").isEqualTo(25);                
     }
     
      @Test

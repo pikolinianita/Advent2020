@@ -19,9 +19,6 @@ public class Day14Test{
     List<String> commands = List.of("mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X","mem[8] = 11","mem[7] = 101","mem[8] = 0");
 
     String mask = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X";
-    
-    public Day14Test() {
-           }
 
     @Test
     void testSomeMask() {
@@ -85,8 +82,7 @@ public class Day14Test{
     void p1Test(){
        var result = new Day14(commands).part1();
        assertThat(result).isEqualTo(165);
-    }
-    
+    }    
     
     private BitSet BitSetfromLong(long l){
              return BitSet.valueOf(new long[]{l});

@@ -46,9 +46,7 @@ public class Day12 {
     }
     
     public static void main(String[] args) throws FileNotFoundException {
-        new Day12("day12.txt").calculate();
-        
-        //1714 too high
+        new Day12("day12.txt").calculate();      
     }
     
     enum Direction{
@@ -141,8 +139,7 @@ static class ShipCommand{
     int value;
     String letter;
 
-    public ShipCommand(String commandLine) {
-        System.out.println(commandLine);
+    public ShipCommand(String commandLine) {        
         letter = commandLine.substring(0, 1);
         value = Integer.parseInt(commandLine.substring(1));
     }
@@ -178,8 +175,7 @@ static class Ship{
             case "W" -> moveTowards(WEST, comm.getValue());
             case "E" -> moveTowards(EAST, comm.getValue());
             default -> throw new UnsupportedOperationException("Wrong direction letter value: " + comm.getLetter()); 
-        }
-        System.out.println(this);
+        }        
         return this;
     }
 
@@ -224,7 +220,6 @@ static class ShipWithWaypoint extends Ship {
             case "E" -> moveWp(EAST, comm.getValue());
             default -> throw new UnsupportedOperationException("Wrong direction letter value: " + comm.getLetter()); 
         }
-        System.out.println(this);
         return this;
     }
 

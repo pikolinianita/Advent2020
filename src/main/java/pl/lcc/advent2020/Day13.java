@@ -56,7 +56,6 @@ public class Day13 {
     }
     
     record BusAndTime(int bus, int time){
-
     int getAnswerP1() {return bus * time;}
 }
     

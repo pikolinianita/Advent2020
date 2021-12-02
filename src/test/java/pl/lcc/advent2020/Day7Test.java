@@ -57,7 +57,6 @@ import static org.junit.jupiter.api.Assertions.*;
      @Test
      void testProcessLine2() {
        var d = new Day7().processLine2("light red bags contain 1 bright white bag, 2 muted yellow bags.");
-       System.out.println(d);
        assertEquals(3, d.size());
        
     }
@@ -71,24 +70,21 @@ import static org.junit.jupiter.api.Assertions.*;
     @Test
      void testPart1(){
         var day = new Day7(); 
-        var exampleLines = example.lines().toArray(String[]::new);
-        //System.out.println(Arrays.toString(day.lines));
+        var exampleLines = example.lines().toArray(String[]::new);        
         assertEquals(4, day.part1(exampleLines));        
     }
     
     @Test
      void testPart2(){
         var day = new Day7(); 
-        var exampleLines = example.lines().toArray(String[]::new);
-        //System.out.println(Arrays.toString(day.lines)); 
+        var exampleLines = example.lines().toArray(String[]::new);       
         assertEquals(32, day.part2(exampleLines));        
     }
     
     @Test
      void testAnotherPart2(){
         var day = new Day7(); 
-        var exampleLines = anotherExample.lines().toArray(String[]::new);
-        //System.out.println(Arrays.toString(day.lines));
+        var exampleLines = anotherExample.lines().toArray(String[]::new);        
         assertEquals(126, day.part2(exampleLines));        
     }
     
