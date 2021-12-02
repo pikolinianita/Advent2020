@@ -10,12 +10,89 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+
+
 public class Day11 {   
+
+    interface PaxLogic{
+
+        char findNewValue(int x, int y);
+
+        void setBoard(Day11 board);
+        
+    }
+    
+    static class P1Logic implements PaxLogic{
+        
+        Day11 board;
+        
+        @Override
+        public void setBoard(Day11 board){
+            this.board = board;
+        }
+
+        int getNCount(int x, int y) {
+            int count = 0;
+            for (int dx = -1; dx != 2; dx++) {
+                for (int dy = -1; dy != 2; dy++) {
+                    if (board.get(x + dx, y + dy) == '#') {
+                        //     System.out.println("x: " + (x+dx) + " y: " + (y+dy) + get (x+dx, y+dy));
+                        count++;
+                    }
+                }
+            }
+            if (board.get(x, y) == '#') {
+                count--;
+            }
+            return count;
+        }
+
+        @Override
+        public char findNewValue(int x, int y) {
+            char thisValue = board.get(x, y);
+            if (thisValue == '.') {
+                return '.';
+            }
+            int neighboursCount = getNCount(x, y);
+            // System.out.println(neighboursCount + " x: " + x + " y: " + y);
+            if (neighboursCount == 0) {
+                if (thisValue == 'L') {
+                    board.changed = true;
+                }
+                return '#';
+            } else if (neighboursCount >= 4) {
+                if (thisValue == '#') {
+                    board.changed = true;
+                }
+                return 'L';
+            } else {
+                return thisValue;
+            }
+        }
+        
+    }
+    
+    static class P2Logic implements PaxLogic{
+
+        Day11 board;
+        
+        @Override
+        public char findNewValue(int x, int y) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+         @Override
+        public void setBoard(Day11 board){
+            this.board = board;
+        }
+        
+    }
     
     int[] input;
     int length;
     int height;
     boolean changed;
+    PaxLogic ai;
 
     Day11(String path) throws FileNotFoundException {
         try ( Scanner sc = new Scanner(new File(path))) {
@@ -27,11 +104,16 @@ public class Day11 {
             height = parsedString.length;
             input = String.join("", parsedString).chars().toArray();
             changed = false;        
-                    
             System.out.println(input.length + " " + length + " " + height);
         }
     }
 
+    Day11 setLogic(PaxLogic board){
+        ai=board;
+        board.setBoard(this);
+        return this;
+    }
+    
     Day11(int[] testArray) {
        input = testArray;
        length = 10;
@@ -44,8 +126,8 @@ public class Day11 {
     }
 
     long part1() {
-        changed = true;
-       
+        setLogic( new P1Logic());
+        changed = true;       
         while (changed){
             changed = false;
             sweepBoard();
@@ -60,13 +142,14 @@ public class Day11 {
           //  System.out.println("x: " + x);
             for(int y=0; y<height; y++)
             {
-                set(output, findNewValue (x,y), x,y );
+                set(output, ai.findNewValue (x,y), x,y );
             }
         }
         input = output;
     }
 
     int part2(int[] input) {
+        setLogic( new P2Logic());
         return -1;
     }
 
@@ -97,44 +180,6 @@ public class Day11 {
         } 
     }
 
-    char findNewValue(int x, int y) {
-        var thisValue = get(x, y);
-        if (thisValue == '.') {
-            return '.';
-        }
-        var neighboursCount = getNCount(x, y);
-       // System.out.println(neighboursCount + " x: " + x + " y: " + y);
-        if (neighboursCount == 0) {
-            if(thisValue=='L') {
-                changed = true;
-            }
-            return '#';
-        } else if (neighboursCount >= 4) {
-             if(thisValue=='#') {
-                 changed = true;
-             }
-            return 'L';
-        }
-        else {
-            return thisValue;
-        }       
-    }    
-
-    int getNCount(int x, int y) {
-        int count = 0;
-        for (int dx = -1; dx != 2; dx++ ) {
-            for (int dy = -1; dy != 2; dy++ ) {
-                if (get (x+dx, y+dy) == '#') {
-               //     System.out.println("x: " + (x+dx) + " y: " + (y+dy) + get (x+dx, y+dy));
-                    count ++;
-                }
-            }
-        }
-        if (get (x,y)=='#'){
-            count--;
-        }
-        return count;
-    }
 
     private boolean isInRange(int x, int y) {
        return (x>=0 && x < length && y >=0 && y < height);

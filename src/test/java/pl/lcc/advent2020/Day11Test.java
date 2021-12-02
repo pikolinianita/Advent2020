@@ -9,7 +9,6 @@ import java.io.FileNotFoundException;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.Arrays;
 
 /**
  *
@@ -72,39 +71,41 @@ public class Day11Test{
     }
     
     @Test   
-    public void testFindNewOnEmpty() {
-        var day = new Day11(testArray);
+    public void testP1FindNewOnEmpty() {
+        var logic = new Day11.P1Logic();
+        var day = new Day11(testArray).setLogic(logic);
         
         SoftAssertions softly = new SoftAssertions();        
-        softly.assertThat(day.findNewValue(0, 1)).isEqualTo('.');
-        softly.assertThat(day.findNewValue(0, 0)).isEqualTo('#');
-        softly.assertThat(day.findNewValue(9, 9)).isEqualTo('#');
-        softly.assertThat(day.findNewValue(1, 0)).isEqualTo('#');        
+        softly.assertThat(logic.findNewValue(0, 1)).isEqualTo('.');
+        softly.assertThat(logic.findNewValue(0, 0)).isEqualTo('#');
+        softly.assertThat(logic.findNewValue(9, 9)).isEqualTo('#');
+        softly.assertThat(logic.findNewValue(1, 0)).isEqualTo('#');        
         softly.assertAll();
     }
     
     @Test   
-    public void testFindNewOnFull() {
-        var day = new Day11(fullArray);
+    public void testP1FindNewOnFull() {
+        var logic = new Day11.P1Logic();
+        var day = new Day11(fullArray).setLogic(logic);
         
         SoftAssertions softly = new SoftAssertions();        
-        softly.assertThat(day.findNewValue(0, 1)).isEqualTo('.');
-        softly.assertThat(day.findNewValue(0, 0)).isEqualTo('#');
-        softly.assertThat(day.findNewValue(3, 3)).isEqualTo('L');
-        softly.assertThat(day.findNewValue(9, 9)).isEqualTo('#');
-        softly.assertThat(day.findNewValue(1, 0)).isEqualTo('#');         
+        softly.assertThat(logic.findNewValue(0, 1)).isEqualTo('.');
+        softly.assertThat(logic.findNewValue(0, 0)).isEqualTo('#');
+        softly.assertThat(logic.findNewValue(3, 3)).isEqualTo('L');
+        softly.assertThat(logic.findNewValue(9, 9)).isEqualTo('#');
+        softly.assertThat(logic.findNewValue(1, 0)).isEqualTo('#');         
         softly.assertAll();
     }
     
     @Test
-    public void testp1(){
+    public void testP1(){
          var day = new Day11(testArray);
          assertEquals(37, day.part1());
     }
     
     @Test
     public void testSweep() {
-        var day = new Day11(testArray);
+        var day = new Day11(testArray).setLogic(new Day11.P1Logic());
         System.out.println(day.toBoardString());
         day.sweepBoard();
         System.out.println(day.toBoardString());
@@ -112,14 +113,6 @@ public class Day11Test{
         System.out.println(day.toBoardString());
         day.sweepBoard();
         System.out.println(day.toBoardString());
-    }
-    
-    @Test
-     void testGetCount(){
-        var day = new Day11(fullArray);
-        System.out.println(day.getNCount(3, 3));
-        System.out.println(day.toBoardString());
-    }     
-     
+    }        
 }
 
