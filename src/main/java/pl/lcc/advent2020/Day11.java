@@ -10,10 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Day11 {
-
-    Day11() {
-    }
+public class Day11 {   
     
     int[] input;
     int length;
@@ -52,18 +49,16 @@ public class Day11 {
         while (changed){
             changed = false;
             sweepBoard();
-        System.out.println(Arrays.toString(input));
-        System.out.println(countChar('#'));
-        System.out.println(countChar('L'));
+        //System.out.println(toBoardString());
         }        
         return countChar('#');
     }
 
     void sweepBoard() {
         var output = new int[input.length];
-        for(int x=0; x<10; x++) {
+        for(int x=0; x<length; x++) {
           //  System.out.println("x: " + x);
-            for(int y=0; y<10; y++)
+            for(int y=0; y<height; y++)
             {
                 set(output, findNewValue (x,y), x,y );
             }
@@ -108,7 +103,7 @@ public class Day11 {
             return '.';
         }
         var neighboursCount = getNCount(x, y);
-        //System.out.println(neighboursCount + " x: " + x + " y: " + y);
+       // System.out.println(neighboursCount + " x: " + x + " y: " + y);
         if (neighboursCount == 0) {
             if(thisValue=='L') {
                 changed = true;
@@ -135,10 +130,21 @@ public class Day11 {
                 }
             }
         }
+        if (get (x,y)=='#'){
+            count--;
+        }
         return count;
     }
 
     private boolean isInRange(int x, int y) {
        return (x>=0 && x < length && y >=0 && y < height);
+    }
+    
+    String toBoardString(){
+        StringBuilder result = new StringBuilder() ;
+        for (int i =0; i < height; i++){
+            result.append( new String(input, i * length, length)).append("\n");           
+        }
+        return result.toString();
     }
 }

@@ -10,15 +10,13 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.Arrays;
-import java.util.function.Consumer;
-import java.util.stream.IntStream;
 
 /**
  *
  * @author piko
  */
 
-/*
+
 public class Day11Test{
     
     String testInput = """
@@ -52,12 +50,7 @@ public class Day11Test{
         testArray = String.join("", testInput.split("\n")).chars().toArray();
         fullArray = String.join("", fullString.split("\n")).chars().toArray();
             }
-    
-    @Test
-    void testSomeMethod() {
-        
-    }
-    
+     
     @Test
     void testCountGuys() throws FileNotFoundException
     {
@@ -86,7 +79,7 @@ public class Day11Test{
         softly.assertThat(day.findNewValue(0, 1)).isEqualTo('.');
         softly.assertThat(day.findNewValue(0, 0)).isEqualTo('#');
         softly.assertThat(day.findNewValue(9, 9)).isEqualTo('#');
-                
+        softly.assertThat(day.findNewValue(1, 0)).isEqualTo('#');        
         softly.assertAll();
     }
     
@@ -99,7 +92,7 @@ public class Day11Test{
         softly.assertThat(day.findNewValue(0, 0)).isEqualTo('#');
         softly.assertThat(day.findNewValue(3, 3)).isEqualTo('L');
         softly.assertThat(day.findNewValue(9, 9)).isEqualTo('#');
-                
+        softly.assertThat(day.findNewValue(1, 0)).isEqualTo('#');         
         softly.assertAll();
     }
     
@@ -112,37 +105,21 @@ public class Day11Test{
     @Test
     public void testSweep() {
         var day = new Day11(testArray);
-        System.out.println(Arrays.toString(day.input));
+        System.out.println(day.toBoardString());
         day.sweepBoard();
-        System.out.println(Arrays.toString(day.input));
+        System.out.println(day.toBoardString());
+        day.sweepBoard();
+        System.out.println(day.toBoardString());
+        day.sweepBoard();
+        System.out.println(day.toBoardString());
     }
     
     @Test
      void testGetCount(){
         var day = new Day11(fullArray);
         System.out.println(day.getNCount(3, 3));
-    }
-     
+        System.out.println(day.toBoardString());
+    }     
      
 }
 
-class BoxDisplay{
-    
-    int width;
-    Consumer<String> output;           
-    
-    BoxDisplay(int width){
-        this.width = width;
-        output = System.out::println;
-    }
-    * }
-    * /
-    
-   /* void display(int[] data) {
-        int size = data.length/width;
-        IntStream.range(0, size)
-                .mapToObj(n-> Arrays.copyOfRange(data, n*width, (n+1) * width))
-                .map(arr -> String.join(","))
-                .
-    }
-    */
