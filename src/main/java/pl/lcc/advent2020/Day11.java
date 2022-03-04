@@ -8,43 +8,40 @@ package pl.lcc.advent2020;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
+public class Day11 {
 
-
-public class Day11 {   
-
-    interface PaxLogic{
+    record Pair (int x, int y){};
+    
+    static List<Pair> pairs = List.of(new Pair (1,1), new Pair (0,1),new Pair (-1,1),new Pair (1,0), new Pair (-1,0), new Pair (-1,-1), new Pair (0,-1),new Pair (1,-1));
+    
+    interface PaxLogic {
 
         char findNewValue(int x, int y);
 
         void setBoard(Day11 board);
         
+        int getNCount (int x, int y);
+
     }
-    
-    static class P1Logic implements PaxLogic{
-        
+
+    static class P1Logic implements PaxLogic {
+
         Day11 board;
-        
+
         @Override
-        public void setBoard(Day11 board){
+        public void setBoard(Day11 board) {
             this.board = board;
         }
 
-        int getNCount(int x, int y) {
-            int count = 0;
-            for (int dx = -1; dx != 2; dx++) {
-                for (int dy = -1; dy != 2; dy++) {
-                    if (board.get(x + dx, y + dy) == '#') {
-                        //     System.out.println("x: " + (x+dx) + " y: " + (y+dy) + get (x+dx, y+dy));
-                        count++;
-                    }
-                }
-            }
-            if (board.get(x, y) == '#') {
-                count--;
-            }
-            return count;
+        @Override
+        public int getNCount(int x, int y) {
+           return (int) pairs.stream()
+                    .filter(p -> (board.get(x + p.x, y + p.y) == '#'))
+                    .count();
         }
 
         @Override
@@ -69,26 +66,57 @@ public class Day11 {
                 return thisValue;
             }
         }
-        
     }
-    
-    static class P2Logic implements PaxLogic{
+
+    static class P2Logic implements PaxLogic {
 
         Day11 board;
-        
+
         @Override
         public char findNewValue(int x, int y) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-         @Override
-        public void setBoard(Day11 board){
-            this.board = board;
+         char thisValue = board.get(x, y);
+            if (thisValue == '.') {
+                return '.';
+            }
+            int neighboursCount = getNCount(x, y);
+            // System.out.println(neighboursCount + " x: " + x + " y: " + y);
+            if (neighboursCount == 0) {
+                if (thisValue == 'L') {
+                    board.changed = true;
+                }
+                return '#';
+            } else if (neighboursCount >= 5) {
+                if (thisValue == '#') {
+                    board.changed = true;
+                }
+                return 'L';
+            } else {
+                return thisValue;
+            }
         }
         
+        @Override
+        public int getNCount(int x, int y){
+          return (int) pairs.stream()
+                  .filter(p -> hasVisiblePax(x, y, p))
+                  .count();
+                  }
+        @Override
+        public void setBoard(Day11 board) {
+            this.board = board;
+        }
+
+        private boolean hasVisiblePax(int x, int y, Pair p) {
+           return switch (board.get(x + p.x, y + p.y)){
+               case '#' -> {yield true;}
+               case 'L', '0' -> {yield false;}
+               default -> hasVisiblePax(x + p.x, y + p.y, p);
+        };
+        }
     }
-    
+
     int[] input;
+    final int[] input_immutable;
     int length;
     int height;
     boolean changed;
@@ -96,70 +124,88 @@ public class Day11 {
 
     Day11(String path) throws FileNotFoundException {
         try ( Scanner sc = new Scanner(new File(path))) {
-           sc.useDelimiter("\n");
-           var parsedString = sc
+            sc.useDelimiter("\n");
+            var parsedString = sc
                     .tokens()
                     .toArray(String[]::new);
             length = parsedString[0].length();
             height = parsedString.length;
-            input = String.join("", parsedString).chars().toArray();
-            changed = false;        
-            System.out.println(input.length + " " + length + " " + height);
+            input_immutable = String.join("", parsedString).chars().toArray();
+            changed = false;
+            System.out.println(input_immutable.length + " " + length + " " + height);
         }
     }
 
-    Day11 setLogic(PaxLogic board){
-        ai=board;
+    Day11 setLogic(PaxLogic board) {
+        ai = board;
         board.setBoard(this);
         return this;
     }
-    
+
     Day11(int[] testArray) {
-       input = testArray;
-       length = 10;
-       height = 10;
-       changed = false;
+        this(testArray, 10, 10);
+    }
+
+    Day11(int[] testArray, int h, int v) {
+        input = testArray;
+        input_immutable = input;
+        length = h;
+        height = v;
+        changed = false;
     }
 
     void calculate() {
-        Utils.printResult("Day11", part1(), part2(null));
+        Utils.printResult("Day11", part1() , part2()); 
     }
 
     long part1() {
-        setLogic( new P1Logic());
-        changed = true;       
-        while (changed){
+        input = input_immutable;
+        setLogic(new P1Logic());
+        System.out.println("p1");
+        changed = true;
+        while (changed) {
             changed = false;
             sweepBoard();
-        //System.out.println(toBoardString());
-        }        
+            System.out.println(countChar('#'));
+            //System.out.println(toBoardString());
+        }
         return countChar('#');
     }
 
     void sweepBoard() {
         var output = new int[input.length];
-        for(int x=0; x<length; x++) {
-          //  System.out.println("x: " + x);
-            for(int y=0; y<height; y++)
-            {
-                set(output, ai.findNewValue (x,y), x,y );
+        for (int x = 0; x < length; x++) {
+            //  System.out.println("x: " + x);
+            for (int y = 0; y < height; y++) {
+                set(output, ai.findNewValue(x, y), x, y);
             }
         }
         input = output;
     }
 
-    int part2(int[] input) {
-        setLogic( new P2Logic());
-        return -1;
+    long part2() {
+        input = input_immutable;
+        setLogic(new P2Logic());
+         changed = true;
+         System.out.println("p2");
+        while (changed) {
+            changed = false;
+            sweepBoard();
+            System.out.println(countChar('#'));
+            //System.out.println(toBoardString());
+        }
+        return countChar('#');
     }
+    
+    //2414 too high
+    //2214 ok
 
     public static void main(String[] args) throws FileNotFoundException {
         new Day11("day11.txt").calculate();
     }
 
-    
     long countChar(char c) {
-       return Arrays.stream(input)
+        return Arrays.stream(input)
                 .filter(ch -> ch == c)
                 .count();
     }
@@ -172,23 +218,22 @@ public class Day11 {
             return '0';
         }
     }
-    
+
     void set(int[] destination, char value, int y, int x) {
         if (isInRange(x, y)) {
             var position = y * length + x;
-            destination [position] = value;
-        } 
+            destination[position] = value;
+        }
     }
-
 
     private boolean isInRange(int x, int y) {
-       return (x>=0 && x < length && y >=0 && y < height);
+        return (x >= 0 && x < length && y >= 0 && y < height);
     }
-    
-    String toBoardString(){
-        StringBuilder result = new StringBuilder() ;
-        for (int i =0; i < height; i++){
-            result.append( new String(input, i * length, length)).append("\n");           
+
+    String toBoardString() {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < height; i++) {
+            result.append(new String(input, i * length, length)).append("\n");
         }
         return result.toString();
     }
