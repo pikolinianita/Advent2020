@@ -137,18 +137,6 @@ import org.junit.jupiter.api.Test;
     }
     
     @Test
-    void testSweep() {
-        var day = new Day11(testArray).setLogic(new Day11.P1Logic());
-        System.out.println(day.toBoardString());
-        day.sweepBoard();
-        System.out.println(day.toBoardString());
-        day.sweepBoard();
-        System.out.println(day.toBoardString());
-        day.sweepBoard();
-        System.out.println(day.toBoardString());
-    }
-    
-    @Test
     void testNeighboursP2_8Neighbours() {
         var inpArray = String.join("", p2Vis8.split("\n")).chars().toArray();
         var day = new Day11(inpArray, 9, 9).setLogic(new Day11.P2Logic());

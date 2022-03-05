@@ -5,11 +5,42 @@
  */
 package pl.lcc.advent2020;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Day16 {
 
+    Train train;
+    
+    Day16 (){
+    train = new Train();
+    }
+    
+    public Day16(String path) throws FileNotFoundException{
+        train = new Train();
+         try ( Scanner sc = new Scanner(new File(path))) {
+            sc.useDelimiter("\n");
+            String next = sc.next();
+            while(!next.isBlank()){
+                train.addRange(Reader.parseCategories(next));
+                next = sc.next();
+            }
+            sc.next();
+            train.setMyTicket(Reader.parseTicket(sc.next()));
+            sc.next();
+            sc.next();
+            while(sc.hasNext()){
+                train.addTicket(Reader.parseTicket(sc.next()));
+            }
+         }
+    }
+    
+    
     class MultiRange {
 
         List<Range> ranges;
@@ -63,6 +94,12 @@ public class Day16 {
 
     class Train {
 
+        
+        List<CategoryLine> ticketFields;
+        List<Ticket> tickets;
+        Ticket myTicket;
+        
+        
         Train() {
             ticketFields = new ArrayList<>();
             tickets = new ArrayList<>();
@@ -72,11 +109,8 @@ public class Day16 {
             this.myTicket = myTicket;
             return this;
         }
-        List<Range> ticketFields;
-        List<Ticket> tickets;
-        Ticket myTicket;
-
-        Train addRange(Range r) {
+        
+        Train addRange(CategoryLine r) {
             ticketFields.add(r);
             return this;
         }
@@ -89,18 +123,60 @@ public class Day16 {
         List<Integer> getWrongValues() {
             return null;
         }
-    }
-
-    class Reader {
+        
+        int calculateP1(){
+            return tickets.stream()
+                    .flatMap(t->t.numbers().stream())
+                    .filter(n -> 0 == ticketFields.stream().filter(cat -> cat.inRange(n)).count())
+                    .mapToInt(i->i)
+                    .sum();
+        }
+        
+        @Override
+        public String toString() {
+            return "Train{" + "ticketFields=" + ticketFields + ", tickets=" + tickets + ", myTicket=" + myTicket + '}';
+        }
+        
         
     }
     
-    void calculate() {
-        Utils.printResult("Template", part1(null), part2(null));
+    record CategoryLine(String name, int min1, int max1, int min2, int max2){
+    
+    boolean inRange(int n){
+        return ((n >= min1) && (n <= max1)) || ((n >= min2) && (n <= max2));
+    }
     }
 
-    int part1(int[] input) {
-        return -1;
+    class Reader {
+        static CategoryLine parseCategories(String input){
+            var name = input.substring(0, input.indexOf(':'));
+            var numbers = Arrays.stream(input.replaceAll("[^0-9]+", " ").trim().split(" ")).mapToInt(Integer::parseInt).toArray();
+                          
+            return new CategoryLine(name,numbers[0],numbers[1],numbers[2],numbers[3]);
+        }
+        
+        static Ticket parseTicket(String input){
+            var numbers = Arrays.stream(input
+                    .replaceAll(",", " ")
+                    .trim()
+                    .split(" "))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toCollection(ArrayList<Integer>::new));
+                    
+            return new Ticket(numbers);
+        }
+    }
+    
+    public static void main(String[] args) throws FileNotFoundException {
+         new Day16 ("day16.txt").calculate();
+    }
+    
+    void calculate() {
+        Utils.printResult("Day 16", part1(), part2(null));
+    }
+
+    int part1() {
+       return train.calculateP1();
     }
 
     int part2(int[] input) {
