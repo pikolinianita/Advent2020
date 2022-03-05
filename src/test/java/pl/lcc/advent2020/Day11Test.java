@@ -9,13 +9,12 @@ import java.io.FileNotFoundException;
 import org.assertj.core.api.SoftAssertions;
 import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-//import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
  * @author piko
  */
-public class Day11Test {
+ class Day11Test {
     
     String testInput = """
                        L.LL.LL.LL
@@ -99,7 +98,7 @@ public class Day11Test {
     }
     
     @Test    
-    public void testP1FindNewOnEmpty() {
+    void testP1FindNewOnEmpty() {
         var logic = new Day11.P1Logic();
         var day = new Day11(testArray).setLogic(logic);
         
@@ -112,7 +111,7 @@ public class Day11Test {
     }
     
     @Test    
-    public void testP1FindNewOnFull() {
+    void testP1FindNewOnFull() {
         var logic = new Day11.P1Logic();
         var day = new Day11(fullArray).setLogic(logic);
         
@@ -126,19 +125,19 @@ public class Day11Test {
     }
     
     @Test
-    public void testP1() {
+    void testP1() {
         var day = new Day11(testArray);
         assertThat(day.part1()).isEqualTo(37);
     }
     
     @Test
-    public void testP2() {
+    void testP2() {
         var day = new Day11(testArray);
         assertThat(day.part2()).isEqualTo(26);
     }
     
     @Test
-    public void testSweep() {
+    void testSweep() {
         var day = new Day11(testArray).setLogic(new Day11.P1Logic());
         System.out.println(day.toBoardString());
         day.sweepBoard();
@@ -150,7 +149,7 @@ public class Day11Test {
     }
     
     @Test
-    public void testNeighboursP2_8Neighbours() {
+    void testNeighboursP2_8Neighbours() {
         var inpArray = String.join("", p2Vis8.split("\n")).chars().toArray();
         var day = new Day11(inpArray, 9, 9).setLogic(new Day11.P2Logic());
         var result = day.ai.getNCount(4, 3);
@@ -160,12 +159,12 @@ public class Day11Test {
     }
     
     @Test
-    public void testNeighboursP2_0Neighbours() {
+    void testNeighboursP2_0Neighbours() {
         var inpArray = String.join("", p2Vis0.split("\n")).chars().toArray();
         var day = new Day11(inpArray, 7, 7).setLogic(new Day11.P2Logic());
         var result = day.ai.getNCount(3, 3);
         assertThat(day.get(3, 3)).isEqualTo('L');
-        assertThat(result).isEqualTo(0);
+        assertThat(result).isZero();
         
     }
     

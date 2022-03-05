@@ -10,11 +10,10 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 public class Day11 {
 
-    record Pair (int x, int y){};
+    record Pair (int x, int y){}
     
     static List<Pair> pairs = List.of(new Pair (1,1), new Pair (0,1),new Pair (-1,1),new Pair (1,0), new Pair (-1,0), new Pair (-1,-1), new Pair (0,-1),new Pair (1,-1));
     
@@ -50,8 +49,7 @@ public class Day11 {
             if (thisValue == '.') {
                 return '.';
             }
-            int neighboursCount = getNCount(x, y);
-            // System.out.println(neighboursCount + " x: " + x + " y: " + y);
+            int neighboursCount = getNCount(x, y);           
             if (neighboursCount == 0) {
                 if (thisValue == 'L') {
                     board.changed = true;
@@ -79,7 +77,6 @@ public class Day11 {
                 return '.';
             }
             int neighboursCount = getNCount(x, y);
-            // System.out.println(neighboursCount + " x: " + x + " y: " + y);
             if (neighboursCount == 0) {
                 if (thisValue == 'L') {
                     board.changed = true;
@@ -106,17 +103,18 @@ public class Day11 {
             this.board = board;
         }
 
+        @SuppressWarnings("InfiniteRecursion")
         private boolean hasVisiblePax(int x, int y, Pair p) {
            return switch (board.get(x + p.x, y + p.y)){
-               case '#' -> {yield true;}
-               case 'L', '0' -> {yield false;}
+               case '#' -> true;
+               case 'L', '0' -> false;
                default -> hasVisiblePax(x + p.x, y + p.y, p);
         };
         }
     }
 
     int[] input;
-    final int[] input_immutable;
+    final int[] inputImmutable;
     int length;
     int height;
     boolean changed;
@@ -130,9 +128,8 @@ public class Day11 {
                     .toArray(String[]::new);
             length = parsedString[0].length();
             height = parsedString.length;
-            input_immutable = String.join("", parsedString).chars().toArray();
+            inputImmutable = String.join("", parsedString).chars().toArray();
             changed = false;
-            System.out.println(input_immutable.length + " " + length + " " + height);
         }
     }
 
@@ -148,7 +145,7 @@ public class Day11 {
 
     Day11(int[] testArray, int h, int v) {
         input = testArray;
-        input_immutable = input;
+        inputImmutable = input;
         length = h;
         height = v;
         changed = false;
@@ -159,15 +156,12 @@ public class Day11 {
     }
 
     long part1() {
-        input = input_immutable;
+        input = inputImmutable;
         setLogic(new P1Logic());
-        System.out.println("p1");
         changed = true;
         while (changed) {
             changed = false;
             sweepBoard();
-            System.out.println(countChar('#'));
-            //System.out.println(toBoardString());
         }
         return countChar('#');
     }
@@ -175,7 +169,6 @@ public class Day11 {
     void sweepBoard() {
         var output = new int[input.length];
         for (int x = 0; x < length; x++) {
-            //  System.out.println("x: " + x);
             for (int y = 0; y < height; y++) {
                 set(output, ai.findNewValue(x, y), x, y);
             }
@@ -184,21 +177,15 @@ public class Day11 {
     }
 
     long part2() {
-        input = input_immutable;
+        input = inputImmutable;
         setLogic(new P2Logic());
          changed = true;
-         System.out.println("p2");
         while (changed) {
             changed = false;
             sweepBoard();
-            System.out.println(countChar('#'));
-            //System.out.println(toBoardString());
         }
         return countChar('#');
     }
-    
-    //2414 too high
-    //2214 ok
 
     public static void main(String[] args) throws FileNotFoundException {
         new Day11("day11.txt").calculate();
