@@ -7,17 +7,17 @@ package pl.lcc.advent2020;
 
 import java.util.HashMap;
 
-//TODO hardcoded Input
+//TODO hardcoded Input, could be faster
 
 public class Day15 {
 
     class Game {
 
-        volatile HashMap<Integer, numberData> game;
+       HashMap<Integer, NumberData> game;
 
-        volatile int turn;
+       int turn;
 
-        volatile int last;
+       int last;
 
         Game() {
             game = new HashMap<>();
@@ -25,7 +25,7 @@ public class Day15 {
 
         Game setInput(int[] input) {
             for (int i = 0; i < input.length; i++) {
-                game.put(input[i], new numberData((i + 1), 1));
+                game.put(input[i], new NumberData((i + 1), 1));
             }
             turn = input.length;
             last = input[input.length - 1];
@@ -36,7 +36,7 @@ public class Day15 {
 
             var lastValue = game.get(last);
             if (lastValue == null) {
-                game.put(last, new numberData(turn, 1));
+                game.put(last, new NumberData(turn, 1));
                 last = 0;
 
             } else {
@@ -60,10 +60,10 @@ public class Day15 {
         }
     }
 
-    record numberData(int lastSeenTime, int seenCount) {
+    record NumberData(int lastSeenTime, int seenCount) {
 
-        numberData update(int newSeen) {
-            return new numberData(newSeen, this.seenCount + 1);
+        NumberData update(int newSeen) {
+            return new NumberData(newSeen, this.seenCount + 1);
         }
     }
 
