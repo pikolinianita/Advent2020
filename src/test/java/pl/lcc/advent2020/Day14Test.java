@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author piko
  */
-public class Day14Test{
+class Day14Test{
     
     List<String> commands = List.of("mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X","mem[8] = 11","mem[7] = 101","mem[8] = 0");
 

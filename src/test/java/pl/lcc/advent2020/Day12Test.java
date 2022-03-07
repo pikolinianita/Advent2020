@@ -13,12 +13,12 @@ import org.junit.jupiter.api.Test;
  *
  * @author piko
  */
-public class Day12Test {
+ class Day12Test {
     
     List<String> input = List.<String>of("F10","N3","F7","R90","F11");
     
     @Test
-    public void testShipSailing() {
+     void testShipSailing() {
         var ship = new Day12.Ship();
         Day12.Ship result = input.stream()
                 .map(Day12.ShipCommand::new)
@@ -27,7 +27,7 @@ public class Day12Test {
     }
     
      @Test
-    public void testShipWPSailing() {
+     void testShipWPSailing() {
         var ship = new Day12.ShipWithWaypoint();
         Day12.Ship result = input.stream()
                 .map(Day12.ShipCommand::new)

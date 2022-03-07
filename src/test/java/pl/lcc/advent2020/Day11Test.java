@@ -87,14 +87,6 @@ import org.junit.jupiter.api.Test;
         assertThat(day.get(1, 10)).isEqualTo('0');
         assertThat(day.get(1, -1)).isEqualTo('0');
 
-//       assertEquals('.', day.get(0,1));
-//       assertEquals('.', day.get(6,0));
-//       assertEquals('L', day.get(2,4));
-//       assertEquals('L', day.get(9,9));
-//       assertEquals('0', day.get(-1,4));
-//       assertEquals('0', day.get(10,4));
-//       assertEquals('0', day.get(1,10));
-//       assertEquals('0', day.get(1,-1));
     }
     
     @Test    

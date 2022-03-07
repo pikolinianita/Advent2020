@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
  * @author piko
  */
 
-public class Day15Test {
+class Day15Test {
            
     @Test
     void testPart1(){
