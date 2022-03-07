@@ -34,15 +34,15 @@ public class Day18 {
 
     class Operators {
 
-        Map<String, LongBinaryOperator> operators = new HashMap<>();
+       private Map<String, LongBinaryOperator> operatorMap = new HashMap<>();
 
         Operators() {
-            operators.put("+", (a, b) -> a + b);
-            operators.put("*", (a, b) -> a * b);
+            operatorMap.put("+", (a, b) -> a + b);
+            operatorMap.put("*", (a, b) -> a * b);
         }
 
         long apply(String opx, long x, long y) {
-            return operators.get(opx).applyAsLong(x, y);
+            return operatorMap.get(opx).applyAsLong(x, y);
         }
     }
 
@@ -84,10 +84,8 @@ public class Day18 {
                     finished = true;
                     yield result;
                 }
-                default -> {
-                    System.out.println(next);
-                    throw new RuntimeException("wrong token: " + next);
-                }
+                default ->  throw new  IllegalArgumentException("wrong token: " + next);
+                
             };
         }
         
@@ -105,11 +103,8 @@ public class Day18 {
                         stack.addLast(Long.parseLong(next));
                     } else {
                         stack.addLast(op.apply(sign, stack.removeLast(), Long.parseLong(next)));
-                    }
-                }
-                case "+","*" -> {
-                    sign = next;
-                }
+                    }}     
+                case "+","*" ->  sign = next;                
                 case "(" -> {
                     var subValue = new Calculation(iter).calculateP2();
                     if (sign.equals("*")) {
@@ -118,13 +113,8 @@ public class Day18 {
                         stack.addLast(op.apply(sign, stack.removeLast(), subValue));
                     }
                 }
-                case ")" -> {
-                    finished = true;
-                }
-                default -> {
-                    System.out.println(next);
-                    throw new RuntimeException("wrong token: " + next);
-                }
+                case ")" -> finished = true;                
+                default ->  throw new IllegalArgumentException("wrong token: " + next);
             }
         }
 
@@ -150,14 +140,16 @@ public class Day18 {
             Iterator<String> iter = makeIterator(expression);
             return new Calculation(iter).calculateP2();
         }
-    }
+    
 
     private Iterator<String> makeIterator(String expression) {
-        var sc = new Scanner(expression);
-        var iter = sc.tokens()
+        try (var sc = new Scanner(expression)){
+        return sc.tokens()
                 .flatMap(s -> Arrays.stream(s.split("")))
                 .toList().iterator();
-        return iter;
+        }
+    }
+    
     }
 
     void calculate() {

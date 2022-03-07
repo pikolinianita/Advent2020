@@ -22,7 +22,7 @@ class Day18Test {
         "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4)), 12240",
         "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2, 13632"
     })
-    public void testCalculate (String expression, int value) {
+    void testCalculate (String expression, int value) {
         assertThat(new Day18(). new Calculator().calculateExpression(expression)).isEqualTo(value);
     }
 
@@ -34,7 +34,7 @@ class Day18Test {
         "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4)), 669060",
         "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2, 23340"
     })
-    public void testCalculateP2 (String expression, int value) {
+    void testCalculateP2 (String expression, int value) {
         assertThat(new Day18(). new Calculator().calculateExpressionP2(expression)).isEqualTo(value);
     }
     
