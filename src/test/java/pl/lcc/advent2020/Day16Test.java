@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.*;
  *
  * @author piko
  */
-public class Day16Test {
+class Day16Test {
 
     public Day16Test() {
     }
@@ -62,8 +62,7 @@ public class Day16Test {
     }
     
     @Test
-    void testTrainP2() {
-        
+    void testTrainP2() {        
         var sizeP1 = getTestTrain().removeInvalidTickets().size();
         var sizeP2 = getTestTrainP2().removeInvalidTickets().size();
         
@@ -76,10 +75,11 @@ public class Day16Test {
         var train = getTestTrainP2();
         var result = new Day16(). new P2Solver(3, train); 
         
-        assertThat(result.numbersInPosition.get(0)).isEqualTo(List.of(3, 15, 5, 11));
-        assertThat(result.numbersInPosition.get(1)).isEqualTo(List.of(9, 1, 14, 12));
-        assertThat(result.numbersInPosition.get(2)).isEqualTo(List.of(18, 5, 9, 13));
-        assertThat(result.numbersInPosition.size()).isEqualTo(3);
+        assertThat(result.numbersInPosition)
+                .containsEntry(0, List.of(3, 15, 5, 11))
+                .containsEntry(1, List.of(9, 1, 14, 12))
+                .containsEntry(2, List.of(18, 5, 9, 13))
+                .hasSize(3);      
     }
     
     @Test

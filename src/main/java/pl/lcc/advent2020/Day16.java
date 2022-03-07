@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -76,7 +77,7 @@ public class Day16 {
         int calculateP1() {
             return tickets.stream()
                     .flatMap(t -> t.numbers().stream())
-                    .filter(n -> isNumberValid(n))
+                    .filter(this::isNumberValid)
                     .mapToInt(i -> i)
                     .sum();
         }
@@ -177,22 +178,19 @@ public class Day16 {
 
             var workingList = possibleSolutions.entrySet().stream()
                     .filter(entry -> entry.getValue().size() == 1)
-                    .map(entry -> entry.getKey())
+                    .map(Entry::getKey)
                     .collect(Collectors.toCollection(ArrayList::new));
 
             while (!workingList.isEmpty()) {
 
-                var element_code = workingList.remove(0);
-                var element = possibleSolutions.get(element_code).get(0);
+                var element = possibleSolutions.get(workingList.remove(0)).get(0);
 
                 possibleSolutions.entrySet().stream()
                         .filter(entry -> entry.getValue().size() > 1)
                         .forEach(entry -> {
-                            if (entry.getValue().remove(element)) {
-                                if (entry.getValue().size() == 1) {
+                            if (entry.getValue().remove(element) && entry.getValue().size() == 1) {                               
                                     workingList.add(entry.getKey());
                                 }
-                            }
                         });
             }
 
@@ -204,7 +202,7 @@ public class Day16 {
             return possibleSolutions.entrySet().stream()
                     .filter(entry -> targetList.contains(entry.getKey().name))
                     .map(entry -> entry.getValue().get(0))
-                    .map(pos -> myTicket.numbers.get(pos))
+                    .map(myTicket.numbers::get)
                     .mapToLong(i -> i)
                     .reduce((a, b) -> a * b)
                     .getAsLong();
@@ -214,6 +212,8 @@ public class Day16 {
 
     class Reader {
 
+        private Reader(){};
+        
         static CategoryLine parseCategories(String input) {
             var name = input.substring(0, input.indexOf(':'));
             var numbers = Arrays.stream(input.replaceAll("[^0-9]+", " ").trim().split(" ")).mapToInt(Integer::parseInt).toArray();
@@ -223,7 +223,7 @@ public class Day16 {
 
         static Ticket parseTicket(String input) {
             var numbers = Arrays.stream(input
-                    .replaceAll(",", " ")
+                    .replace(",", " ")
                     .trim()
                     .split(" "))
                     .map(Integer::parseInt)
