@@ -21,22 +21,25 @@ import java.util.Set;
 public class Day24 {
 
     List<String> directions;
+
+    Day24() {
+    }
+
+    ;
     
-    Day24(){};
-    
-    Day24(String path) throws FileNotFoundException{
-        try ( Scanner sc = new Scanner(new File(path))) {
+    Day24(String path) throws FileNotFoundException {
+        try (Scanner sc = new Scanner(new File(path))) {
             sc.useDelimiter("\n");
             directions = sc.tokens().toList();
         }
     }
-    
+
     void calculate() {
         Utils.printResult("Template", part1(), part2());
     }
 
     int part1() {
-       return new Board(directions).getAnswer();
+        return new Board(directions).getAnswer();
     }
 
     int part2() {
@@ -52,17 +55,17 @@ public class Day24 {
         Set<Tile> sourceTiles;
         int turnsRequired;
         Set<Tile> resultTiles;
-        Map<Tile,Integer> whitesForChange;
-        
+        Map<Tile, Integer> whitesForChange;
+
         static List<Tile> neighbours = List.of(
-                new Tile (2,0),
-                new Tile (-2,0),
-                new Tile (1,1),
-                new Tile (-1,1),
-                new Tile (1,-1),
-                new Tile (-1,-1)
+                new Tile(2, 0),
+                new Tile(-2, 0),
+                new Tile(1, 1),
+                new Tile(-1, 1),
+                new Tile(1, -1),
+                new Tile(-1, -1)
         );
-        
+
         public Animator(Board source, int n) {
             sourceTiles = new HashSet(source.coloured);
             turnsRequired = n;
@@ -70,14 +73,10 @@ public class Day24 {
 
         Board result() {
             resultTiles = new HashSet<>(sourceTiles);
-           // System.out.println(resultTiles);
-            for(int i =0; i<turnsRequired; i++){
-               // System.out.println(resultTiles);
-                //System.out.println("run tunn " +i + " out of " + turnsRequired);
+            for (int i = 0; i < turnsRequired; i++) {
                 resultTiles = doTurn();
-                //System.out.println(resultTiles);
             }
-            
+
             return new Board(resultTiles);
         }
 
@@ -85,56 +84,55 @@ public class Day24 {
             whitesForChange = new HashMap<>();
             List<Tile> blackToTurn = makeBlackToTurnListAndConstructWhitesMap();
             List<Tile> whiteToTurn = filterWhiteMap();
-            
+
             var result = new HashSet<>(resultTiles);
-            //System.out.println("black: " + blackToTurn);
-            //System.out.println("Whitr: " + whiteToTurn);
-            //System.out.println("map" + whitesForChange);
             result.removeAll(blackToTurn);
             result.addAll(whiteToTurn);
             return result;
         }
 
         private List<Tile> makeBlackToTurnListAndConstructWhitesMap() {
-          return resultTiles.stream()
-                   .filter(this::checkNumbersAnsPopulateWhiteMap)
-                   .toList();
+            return resultTiles.stream()
+                    .filter(this::checkNumbersAnsPopulateWhiteMap)
+                    .toList();
         }
 
         private List<Tile> filterWhiteMap() {
-           return whitesForChange.entrySet().stream()
+            return whitesForChange.entrySet().stream()
                     .filter(entry -> entry.getValue() == 2)
-                    .map (Entry::getKey)
+                    .map(Entry::getKey)
                     .toList();
         }
 
         private boolean checkNumbersAnsPopulateWhiteMap(Tile tile) {
-          var count = neighbours.stream()
+            var count = neighbours.stream()
                     .map(tile::add)
-                    .filter( (t)-> 
-                    {if (resultTiles.contains(t)) return true; 
-                    else {addToWhitesMap(t);  return false;}})
+                    .filter((t)
+                            -> {
+                        if (resultTiles.contains(t)) {
+                            return true;
+                        } else {
+                            addToWhitesMap(t);
+                            return false;
+                        }
+                    })
                     .count();
-          return !(count == 1 || count == 2);
+            return !(count == 1 || count == 2);
         }
 
         private void addToWhitesMap(Tile t) {
-           // System.out.println("");
-         //   System.out.println(t);
-           // System.out.println(whitesForChange.get(t));
-            whitesForChange.merge(t, 1, (old, sth)-> ++old);
-            //System.out.println(whitesForChange.get(t));
+            whitesForChange.merge(t, 1, (old, sth) -> ++old);
         }
     }
-    
+
     record Tile(int x, int y) {
 
-        Tile add (Tile t){
-            return new Tile (x + t.x, y + t.y);
+        Tile add(Tile t) {
+            return new Tile(x + t.x, y + t.y);
         }
-        
+
     }
- 
+
     class Board {
 
         Set<Tile> coloured;
@@ -142,11 +140,11 @@ public class Day24 {
         Board() {
             coloured = new HashSet<>();
         }
-        
-        Board(Set<Tile> data){
+
+        Board(Set<Tile> data) {
             coloured = data;
         }
-     
+
         Board(List<String> list) {
             this();
             coloured = list.stream()
@@ -206,13 +204,11 @@ public class Day24 {
             }
             return new Tile(x, y);
         }
-        
-        Board animate(int n){
-            return new Animator(this,n).result();
+
+        Board animate(int n) {
+            return new Animator(this, n).result();
         }
 
     }
-    
-    
 
 }
