@@ -37,9 +37,9 @@ public class Day17 {
         return result;
     }   
     
-    static List<Tile4D> neighbours4D = CreateNeighbours4D();
+    static List<Tile4D> neighbours4D = createNeighbours4D();
 
-    static List<Tile4D> CreateNeighbours4D() {
+    static List<Tile4D> createNeighbours4D() {
         List<Tile4D> result = new ArrayList<>(27);
         for (int x = -1; x < 2; x++) {
             for (int y = -1; y < 2; y++) {
@@ -78,23 +78,25 @@ public class Day17 {
         return new Ticker(new Board(boardLines, true),6).getResult().countActive();
     }
 
-    interface Tile<T> {
+    interface Tile {
 
-        T add(T t);
+        Tile add(Tile t);
     }
 
-    record Tile3D(int x, int y, int z) implements Tile<Tile3D> {
+    record Tile3D(int x, int y, int z) implements Tile {
 
         @Override
-        public Tile3D add(Tile3D t) {
+        public Tile add(Tile tile) {
+            var t = (Tile3D) tile;
             return new Tile3D(x + t.x(), y + t.y(), z + t.z());
         }
     }
 
-    record Tile4D(int x, int y, int z, int w) implements Tile<Tile4D> {
+    record Tile4D(int x, int y, int z, int w) implements Tile {
 
         @Override
-        public Tile4D add(Tile4D t) {
+        public Tile add(Tile tile) {
+            var t = (Tile4D) tile;
             return new Tile4D(x + t.x(), y + t.y(), z + t.z(), w + t.w());
         }
     }
@@ -154,7 +156,7 @@ public class Day17 {
         private boolean checkNumbersAnsPopulateInactiveMap(Tile tile) {
             var count = neighbours.stream()
                     .map((t) -> (Tile) tile.add(t))
-                    .filter((t)
+                    .filter(t
                             -> {
                         if (activeTiles.contains(t)) {
                             return true;
