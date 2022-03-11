@@ -155,7 +155,7 @@ public class Day17 {
 
         private boolean checkNumbersAnsPopulateInactiveMap(Tile tile) {
             var count = neighbours.stream()
-                    .map((t) -> (Tile) tile.add(t))
+                    .map(t -> tile.add(t))
                     .filter(t
                             -> {
                         if (activeTiles.contains(t)) {
