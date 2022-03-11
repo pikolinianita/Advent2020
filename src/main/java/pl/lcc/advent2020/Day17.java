@@ -22,10 +22,10 @@ public class Day17 {
 
     List<String> boardLines;
 
-    static List<Tile> neighbours3D = neighbours3D();
+    static List<Tile3D> neighbours3D = createNeighbours3D();
 
-    static List<Tile> neighbours3D() {
-        List<Tile> result = new ArrayList<>(27);
+    static List<Tile3D> createNeighbours3D() {
+        List<Tile3D> result = new ArrayList<>(27);
         for (int x = -1; x < 2; x++) {
             for (int y = -1; y < 2; y++) {
                 for (int z = -1; z < 2; z++) {
@@ -35,13 +35,12 @@ public class Day17 {
         }
         result.remove(new Tile3D(0, 0, 0));
         return result;
-    }
-    ;
+    }   
     
-    static List<Tile> neighbours4D = neighbours4D();
+    static List<Tile4D> neighbours4D = CreateNeighbours4D();
 
-    static List<Tile> neighbours4D() {
-        List<Tile> result = new ArrayList<>(27);
+    static List<Tile4D> CreateNeighbours4D() {
+        List<Tile4D> result = new ArrayList<>(27);
         for (int x = -1; x < 2; x++) {
             for (int y = -1; y < 2; y++) {
                 for (int z = -1; z < 2; z++) {
@@ -106,7 +105,7 @@ public class Day17 {
         int numberOfTurns;
         Map<Tile, Integer> inactiveForChange;
         final boolean is4D;
-        final List<Tile> neighbours;
+        final List<? extends Tile> neighbours;
 
         Ticker(Board board, int n) {
             activeTiles = board.activeTiles;
@@ -191,9 +190,6 @@ public class Day17 {
 
         private Set<Tile> makeTiles(List <String> rowList, boolean is4D) {
             var result = new HashSet<Tile>();
-            //try (var sc = new Scanner(input)) {
-            //    sc.useDelimiter("\n");
-            //    var rowList = sc.tokens().toList();
                 for (int i = 0; i < rowList.size(); i++) {
                     var tokens = rowList.get(i).split("");
                     for (int j = 0; j < tokens.length; j++) {

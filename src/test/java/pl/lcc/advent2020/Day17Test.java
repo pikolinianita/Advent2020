@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.*;
  *
  * @author Nauczyciel
  */
-public class Day17Test {
+class Day17Test {
 
     List<String> test = """
                   .#.

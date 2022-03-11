@@ -24,8 +24,6 @@ public class Day24 {
 
     Day24() {
     }
-
-    ;
     
     Day24(String path) throws FileNotFoundException {
         try (Scanner sc = new Scanner(new File(path))) {
@@ -67,7 +65,7 @@ public class Day24 {
         );
 
         public Animator(Board source, int n) {
-            sourceTiles = new HashSet(source.coloured);
+            sourceTiles = new HashSet<>(source.coloured);
             turnsRequired = n;
         }
 
@@ -107,7 +105,7 @@ public class Day24 {
         private boolean checkNumbersAnsPopulateWhiteMap(Tile tile) {
             var count = neighbours.stream()
                     .map(tile::add)
-                    .filter((t)
+                    .filter(t
                             -> {
                         if (resultTiles.contains(t)) {
                             return true;
@@ -152,7 +150,7 @@ public class Day24 {
                     .collect(HashSet::new,
                             this::addToSet,
                             (a, b) -> {
-                                throw new RuntimeException("Combiner should not be invoked");
+                                throw new NoSuchMethodError("Combiner should not be invoked");
                             }
                     );
         }
@@ -199,6 +197,7 @@ public class Day24 {
                                 y--;
                             }
                         }
+                        default -> throw new IllegalArgumentException("Wrong Input String!");
                     }
                 }
             }
