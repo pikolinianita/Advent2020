@@ -5,24 +5,21 @@
 package pl.lcc.advent2020;
 
 import java.util.List;
-import java.util.Set;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 /**
  *
  * @author Nauczyciel
  */
 public class Day17Test {
-    
-    String test = """
+
+    List<String> test = """
                   .#.
                   ..#
-                  ###""";
-    
-    String inp = """
+                  ###""".lines().toList();
+
+    List<String> inp = """
                  ###..#..
                  .#######
                  #####...
@@ -30,44 +27,48 @@ public class Day17Test {
                  ###..##.
                  ##...#..
                  ..#...#.
-                 .#....##""";
-    
-    
-    @Test
-    public void testCalculate() {
-    }
+                 .#....##""".lines().toList();
 
     @Test
-    public void testPart1() {
-    }
-    
-    @Test
-    public void testPart2() {
-    }
-    
-    @Test
-    void testparseTile(){
-       var result = new Day17.Board(test).countActive();
-     
+    void testparseTile() {
+        var result = new Day17.Board(test, false).countActive();
         assertThat(result).isEqualTo(5);
     }
-    
-@Test
-void testTicker(){
-    var result = new Day17.Ticker(new Day17.Board(test), 1);
-    assertThat(result.getResult().countActive()).isEqualTo(11);
-}
-    
-@Test
-void testTickerSix(){
-    var result = new Day17.Ticker(new Day17.Board(test), 6);
-    assertThat(result.getResult().countActive()).isEqualTo(112);
-}
 
-@Test
-void runTickerSixProper(){
-     var result = new Day17.Ticker(new Day17.Board(inp), 6);
-    assertThat(result.getResult().countActive()).isEqualTo(112);
-}
+    @Test
+    void testparseTile4D() {
+        var result = new Day17.Board(test, true).countActive();
+        assertThat(result).isEqualTo(5);
+    }
+
+    @Test
+    void testNeighbours4D() {
+        var result = Day17.neighbours4D.size();
+        assertThat(result).isEqualTo(80);
+    }
+
+    @Test
+    void testNeighbours3D() {
+        var result = Day17.neighbours3D.size();
+        assertThat(result).isEqualTo(26);
+    }
+
+    @Test
+    void testTicker() {
+        var result = new Day17.Ticker(new Day17.Board(test, false), 1);
+        assertThat(result.getResult().countActive()).isEqualTo(11);
+    }
+
+    @Test
+    void testTickerSix() {
+        var result = new Day17.Ticker(new Day17.Board(test, false), 6);
+        assertThat(result.getResult().countActive()).isEqualTo(112);
+    }
+
+    @Test
+    void testTickerSixP2() {
+        var result = new Day17.Ticker(new Day17.Board(test, true), 6);
+        assertThat(result.getResult().countActive()).isEqualTo(848);
+    }
 
 }
