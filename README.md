@@ -9,6 +9,8 @@ Each day is located in one file. Use `new DayXX(String filePath).calculate()`.
 Tests are included. Input data is not.
 
 ## Results
+38 stars:
+
 1. **
 2. **
 3. **
